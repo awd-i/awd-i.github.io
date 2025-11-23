@@ -31,7 +31,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({ activeSection, onSectionChan
     };
 
     return (
-        <nav className="flex flex-col gap-4 md:gap-4 p-4 md:p-8 w-full max-w-md md:max-w-xs z-10">
+        <nav className="flex flex-col gap-4 p-4 md:p-8 w-full max-w-md md:max-w-xs z-10">
             {sections.map((section) => {
                 const isActive = activeSection === section.toLowerCase();
                 return (
@@ -48,7 +48,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ activeSection, onSectionChan
                             className={`
                 border-l-8
                 ${isActive ? 'border-l-black' : 'border-l-transparent group-hover:border-l-white'}
-                py-2 md:py-0
               `}
                         >
                             <span className={`
