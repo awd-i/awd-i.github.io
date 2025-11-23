@@ -82,6 +82,26 @@ export const AboutSection: React.FC = () => {
                             </div>
                         </SkewedPanel>
                     </motion.div>
+
+                    {Object.entries(about.technologies).map(([category, items], idx) => (
+                        <motion.div
+                            key={category}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 + idx * 0.1 }}
+                        >
+                            <SkewedPanel variant="outline" className="px-6 py-3">
+                                <h3 className="text-lg font-bold mb-2 uppercase border-b border-white/30 pb-1">{category}</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {items.map((item, i) => (
+                                        <span key={i} className="bg-white text-black px-2 py-0.5 text-sm font-bold transform -skew-x-12 hover:scale-110 transition-transform cursor-default">
+                                            <span className="block transform skew-x-12">{item}</span>
+                                        </span>
+                                    ))}
+                                </div>
+                            </SkewedPanel>
+                        </motion.div>
+                    ))}
                 </div>
 
                 {/* Stats Column */}

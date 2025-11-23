@@ -33,6 +33,9 @@ export interface About {
     email?: string;
     github?: string;
     focusAreas: string[];
+    technologies: {
+        [category: string]: string[];
+    };
     stats: { label: string; value: number }[];
 }
 
@@ -147,6 +150,12 @@ export const profileData = {
         email: 'whitedeer@stanford.edu',
         github: 'https://github.com/awd-i',
         focusAreas: ['XR/VR', 'AI/ML', 'Machine Perception', 'Natural Language Processing', 'Robotics', 'Dynamic Systems'],
+        technologies: {
+            'Frameworks & Libraries': ['React', 'PyTorch', 'Next.js', 'Express.js', 'Node.js', 'Framer Motion', 'Three.js', 'react-globe.gl', 'Tailwind CSS', 'BERT', 'Hugging Face'],
+            'Tools & Technologies': ['Git', 'Fork', 'IntelliJ IDEA', 'Visual Studio Code', 'MATLAB', 'Kusto Explorer', 'Azure', 'Roblox Studio', 'TypeScript', 'Vite', 'WebSockets', 'C#', 'KQL'],
+            'APIs & Services': ['xAI API', 'Coinbase CDP', 'Claude AI', 'GPT/Gemini', 'Webonary APIs', 'Graph API', 'OAuth 2.0', 'Roblox APIs', 'Azure APIs', 'Vapi'],
+            'Databases': ['MySQL', 'SQL Server', 'Azure Data Explorer', 'PostgreSQL', 'SQLite'],
+        },
         stats: [
             { label: 'Python/Lua', value: 95 },
             { label: 'Java/SQL', value: 90 },
