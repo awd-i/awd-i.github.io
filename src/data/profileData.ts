@@ -131,6 +131,16 @@ export const profileData = {
                 github: 'https://github.com/RemleyGHooker/Sync-d/tree/main',
             },
         },
+        {
+            id: 'proj5',
+            name: 'Roblox Simulator Game',
+            shortDescription: 'User-saving cloud storage with SQL and Lua-based game mechanics.',
+            techStack: ['Lua', 'SQL', 'Roblox Studio', 'Roblox APIs'],
+            impact: 'Engineered cloud storage with SQL, scripted Lua-based mechanics, and integrated Roblox APIs to enable in-game catalog, persistent user data, and UI/UX elements.',
+            links: {
+                live: 'https://www.roblox.com/games/11947761094/1-Weight-Every-Second',
+            },
+        },
     ] as Project[],
     about: {
         bio: "Welcome to my interactive portfolio, my name is Aidan Whitedeer. I'm a Stanford CS student with an interest in XR/VR, Robotics, Machine Perception, and NLP",
@@ -138,10 +148,10 @@ export const profileData = {
         github: 'https://github.com/awd-i',
         focusAreas: ['XR/VR', 'AI/ML', 'Machine Perception', 'Natural Language Processing', 'Robotics', 'Dynamic Systems'],
         stats: [
-            { label: 'AI / ML', value: 95 },
-            { label: 'FULL-STACK', value: 90 },
-            { label: 'SYSTEMS', value: 85 },
-            { label: 'WEB3', value: 80 },
+            { label: 'Python/Lua', value: 95 },
+            { label: 'Java/SQL', value: 90 },
+            { label: 'React/HTML/CSS', value: 85 },
+            { label: 'C++/C#', value: 80 },
         ],
     } as About,
 };

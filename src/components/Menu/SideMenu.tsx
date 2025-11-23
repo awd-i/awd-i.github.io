@@ -16,11 +16,11 @@ export const SideMenu: React.FC<SideMenuProps> = ({ activeSection, onSectionChan
 
         // For ABOUT: split the menu to frame the deer
         if (activeSection === 'about') {
-            if (sectionIndex <= 1) {
-                // Top buttons (EXPERIENCE, EDUCATION) move UP
+            if (sectionIndex <= 2) {
+                // Top buttons (EXPERIENCE, EDUCATION, PROJECTS) move UP
                 return '-translate-y-32';
             } else {
-                // Bottom buttons (PROJECTS, ABOUT) move DOWN
+                // Bottom button (ABOUT) moves DOWN
                 return 'translate-y-32';
             }
         }

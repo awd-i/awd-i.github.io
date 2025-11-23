@@ -27,13 +27,14 @@ const DeerModel: React.FC<{ activeSection: string }> = ({ activeSection }) => {
 
         // More prominent floating animation - focus on head area
         const baseY = -7.5;
-        meshRef.current.position.y = baseY + Math.sin(time * 0.8) * 0.15;
+        const floatingOffset = Math.sin(time * 0.8) * 0.15;
 
         // Section-based positioning and rotation - left-focused with head in view
         let targetRotationY = 0;
         let targetRotationX = 0;
         let targetX = -2;
         let targetZ = 0;
+        let targetY = baseY;
 
         switch (activeSection) {
             case 'experience':
@@ -41,26 +42,33 @@ const DeerModel: React.FC<{ activeSection: string }> = ({ activeSection }) => {
                 targetRotationX = -0.1;
                 targetX = -2.5;
                 targetZ = 0;
+                targetY = baseY;
                 break;
             case 'education':
                 targetRotationY = -0.4;
                 targetRotationX = -0.8; // Looking downward
                 targetX = -2;
                 targetZ = 0.5;
+                targetY = baseY;
                 break;
             case 'projects':
                 targetRotationY = 0.5;
                 targetRotationX = -0.8; // Looking downward
                 targetX = -2.8;
                 targetZ = -0.5;
+                targetY = baseY;
                 break;
             case 'about':
                 targetRotationY = 0.1;
                 targetRotationX = 0;
                 targetX = -3.2; // Move deer to the left
                 targetZ = -2.5; // Move deer backwards (away from screen)
+                targetY = baseY - 0.75; // Move deer down by 10%
                 break;
         }
+
+        // Apply floating animation to Y position
+        meshRef.current.position.y = targetY + floatingOffset;
 
         // Smooth interpolation for rotation and position
         meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotationY, 0.05);
