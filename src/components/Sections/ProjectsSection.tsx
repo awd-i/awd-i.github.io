@@ -25,7 +25,7 @@ export const ProjectsSection: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
                     >
-                        <SkewedPanel variant="black" className="group hover:border-white transition-all duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none">
+                        <SkewedPanel variant="black" className="group hover:border-white transition-all duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
                                 <h3 className="text-2xl font-bold font-display tracking-wide group-hover:text-p5-light-gray transition-colors ml-0 md:ml-2">
                                     {project.name}

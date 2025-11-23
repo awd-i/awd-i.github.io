@@ -25,7 +25,7 @@ export const ExperienceSection: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
                     >
-                        <SkewedPanel variant="outline" className="group hover:bg-white hover:text-black transition-colors duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none">
+                        <SkewedPanel variant="outline" className="group hover:bg-white hover:text-black transition-colors duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 className="text-2xl font-bold uppercase ml-0 md:ml-2">{exp.company}</h3>
                                 <span className="text-sm font-mono border border-current px-2 py-1 rounded-full mt-2 md:mt-0">

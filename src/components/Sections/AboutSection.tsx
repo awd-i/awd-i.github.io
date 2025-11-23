@@ -34,7 +34,7 @@ export const AboutSection: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <SkewedPanel variant="white" className="p-4 px-6 transform-none md:transform rounded-lg md:rounded-none">
+                        <SkewedPanel variant="white" className="p-4 px-6 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                             <h3 className="text-xl font-bold mb-2 uppercase italic ml-0 md:ml-4 border-b border-black/20 pb-1">Profile</h3>
                             <p className="text-xs font-bold italic uppercase leading-relaxed">
                                 {about.bio}
@@ -71,7 +71,7 @@ export const AboutSection: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                     >
-                        <SkewedPanel variant="outline" className="px-6 py-3 transform-none md:transform rounded-lg md:rounded-none">
+                        <SkewedPanel variant="outline" className="px-6 py-3 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                             <h3 className="text-lg font-bold mb-2 uppercase border-b border-white/30 pb-1">Current Focus</h3>
                             <div className="flex flex-wrap gap-2">
                                 {about.focusAreas.map((area, i) => (
@@ -90,7 +90,7 @@ export const AboutSection: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 + idx * 0.1 }}
                         >
-                            <SkewedPanel variant="outline" className="px-6 py-3 transform-none md:transform rounded-lg md:rounded-none">
+                            <SkewedPanel variant="outline" className="px-6 py-3 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                                 <h3 className="text-lg font-bold mb-2 uppercase border-b border-white/30 pb-1">{category}</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {items.map((item, i) => (
@@ -111,7 +111,7 @@ export const AboutSection: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <SkewedPanel variant="black" className="h-full px-5 py-4 transform-none md:transform rounded-lg md:rounded-none">
+                        <SkewedPanel variant="black" className="h-full px-5 py-4 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                             <h3 className="text-lg font-bold mb-4 uppercase text-center border-b-2 border-white pb-1">
                                 Stats
                             </h3>

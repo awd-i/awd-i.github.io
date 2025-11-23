@@ -24,7 +24,7 @@ export const EducationSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
             >
-                <SkewedPanel variant="white" className="mb-8 px-8 transform-none md:transform rounded-lg md:rounded-none">
+                <SkewedPanel variant="white" className="mb-8 px-8 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                     <div className="flex items-start justify-between">
                         <div>
                             <h3 className="text-3xl font-bold uppercase mb-1">{education.school}</h3>
@@ -44,7 +44,7 @@ export const EducationSection: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <SkewedPanel variant="outline" className="h-full px-6 transform-none md:transform rounded-lg md:rounded-none">
+                    <SkewedPanel variant="outline" className="h-full px-6 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                         <div className="flex items-center gap-2 mb-4 border-b border-white pb-2 ml-0 md:ml-6">
                             <BookOpen size={20} />
                             <h4 className="text-xl font-bold">KEY COURSEWORK</h4>
@@ -64,7 +64,7 @@ export const EducationSection: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
                 >
-                    <SkewedPanel variant="outline" className="h-full px-6 transform-none md:transform rounded-lg md:rounded-none">
+                    <SkewedPanel variant="outline" className="h-full px-6 transform-none md:transform rounded-lg md:rounded-none" innerClassName="transform-none md:transform">
                         <div className="flex items-center gap-2 mb-4 border-b border-white pb-2 ml-0 md:ml-3">
                             <Award size={20} />
                             <h4 className="text-xl font-bold">HONORS & AWARDS</h4>

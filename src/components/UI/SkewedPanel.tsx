@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 interface SkewedPanelProps<T extends React.ElementType> {
     children: React.ReactNode;
     className?: string;
+    innerClassName?: string;
     skew?: 'left' | 'right' | 'none';
     variant?: 'black' | 'white' | 'outline';
     as?: T;
@@ -12,6 +13,7 @@ interface SkewedPanelProps<T extends React.ElementType> {
 export const SkewedPanel = <T extends React.ElementType = 'div'>({
     children,
     className,
+    innerClassName,
     skew = 'left',
     variant = 'black',
     as,
@@ -50,7 +52,7 @@ export const SkewedPanel = <T extends React.ElementType = 'div'>({
             )}
             {...(props as any)}
         >
-            <div className={contentSkewStyles[skew]}>
+            <div className={twMerge(contentSkewStyles[skew], innerClassName)}>
                 {children}
             </div>
         </Component>
