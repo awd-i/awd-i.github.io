@@ -10,8 +10,22 @@ interface SideMenuProps {
 const sections = ['EXPERIENCE', 'EDUCATION', 'PROJECTS', 'ABOUT'];
 
 export const SideMenu: React.FC<SideMenuProps> = ({ activeSection, onSectionChange }) => {
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     // Calculate individual button offset based on position and active section
     const getButtonOffset = (sectionName: string) => {
+        // No button movements on mobile
+        if (isMobile) {
+            return 'translate-y-0';
+        }
+
         const sectionIndex = sections.indexOf(sectionName);
 
         // For ABOUT: split the menu to frame the deer

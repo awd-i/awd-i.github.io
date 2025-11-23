@@ -12,7 +12,7 @@ export const ProjectsSection: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <h2 className="text-4xl font-display font-bold mb-4 border-b-4 border-white inline-block pr-12 ml-12 transform -skew-x-12">
+                <h2 className="text-4xl font-display font-bold mb-4 border-b-4 border-white inline-block pr-12 ml-0 md:ml-12 transform-none md:transform md:-skew-x-12">
                     PROJECTS
                 </h2>
             </motion.div>
@@ -25,9 +25,9 @@ export const ProjectsSection: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
                     >
-                        <SkewedPanel variant="black" className="group hover:border-white transition-all duration-300 px-6">
+                        <SkewedPanel variant="black" className="group hover:border-white transition-all duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                                <h3 className="text-2xl font-bold font-display tracking-wide group-hover:text-p5-light-gray transition-colors ml-2">
+                                <h3 className="text-2xl font-bold font-display tracking-wide group-hover:text-p5-light-gray transition-colors ml-0 md:ml-2">
                                     {project.name}
                                 </h3>
                                 <div className="flex gap-3 mt-2 md:mt-0">
@@ -66,8 +66,8 @@ export const ProjectsSection: React.FC = () => {
                                 ))}
                             </div>
 
-                            <div className="bg-white/10 p-3 -skew-x-12 border-l-4 border-white">
-                                <p className="text-sm skew-x-12 flex items-start gap-3">
+                            <div className="bg-white/10 p-3 rounded-md md:rounded-none transform-none md:transform md:-skew-x-12 border-l-4 border-white">
+                                <p className="text-sm transform-none md:transform md:skew-x-12 flex items-start gap-3">
                                     <Code size={18} className="mt-0.5 flex-shrink-0" />
                                     <span className="leading-relaxed">{project.impact}</span>
                                 </p>
