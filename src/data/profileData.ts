@@ -144,6 +144,26 @@ export const profileData = {
                 live: 'https://www.roblox.com/games/11947761094/1-Weight-Every-Second',
             },
         },
+        {
+            id: 'proj6',
+            name: 'GIODE SDR - AI-Powered Human Sales Dashboard',
+            shortDescription: 'AI-powered SDR system with automated lead scoring and pipeline management.',
+            techStack: ['Next.js', 'TypeScript', 'Prisma ORM', 'Grok API', 'Docker', 'shadcn/ui', 'Tailwind CSS'],
+            impact: 'Built automated lead scoring, email generation, and pipeline management with REST APIs, multi-model evaluation, error handling with retries, and production-ready architecture.',
+            links: {
+                github: 'https://github.com/awd-i/GIODESDR/tree/main',
+            },
+        },
+        {
+            id: 'proj7',
+            name: 'LlamaQuechua OS - Quantifying LLM Endangered Language Hallucination',
+            shortDescription: 'Translation hallucination detector for endangered Quechua language.',
+            techStack: ['JavaScript', 'OpenAI GPT-4o', 'Google Cloud Translation API'],
+            impact: 'Built smoothed multinomial models to compute entropy, cross-entropy, and KL divergence with CLT confidence intervals, featuring dual-mode interface for sentence analysis and automated experiments—detecting 2.054-bit KL divergence and 6.7% token accuracy revealing Spanish contamination.',
+            links: {
+                github: 'https://github.com/awd-i/llamaquechua',
+            },
+        },
     ] as Project[],
     about: {
         bio: "Welcome to my interactive portfolio, my name is Aidan Whitedeer. I'm a Stanford CS student with an interest in XR/VR, Robotics, Machine Perception, and NLP",
@@ -151,9 +171,9 @@ export const profileData = {
         github: 'https://github.com/awd-i',
         focusAreas: ['XR/VR', 'AI/ML', 'Machine Perception', 'Natural Language Processing', 'Robotics', 'Dynamic Systems'],
         technologies: {
-            'Frameworks & Libraries': ['React', 'PyTorch', 'Next.js', 'Express.js', 'Node.js', 'Framer Motion', 'Three.js', 'react-globe.gl', 'Tailwind CSS', 'BERT', 'Hugging Face'],
-            'Tools & Technologies': ['Git', 'Fork', 'IntelliJ IDEA', 'Visual Studio Code', 'MATLAB', 'Kusto Explorer', 'Azure', 'Roblox Studio', 'TypeScript', 'Vite', 'WebSockets', 'C#', 'KQL'],
-            'APIs & Services': ['xAI API', 'Coinbase CDP', 'Claude AI', 'GPT/Gemini', 'Webonary APIs', 'Graph API', 'OAuth 2.0', 'Roblox APIs', 'Azure APIs', 'Vapi'],
+            'Frameworks & Libraries': ['React', 'PyTorch', 'Next.js', 'Express.js', 'Node.js', 'Framer Motion', 'Three.js', 'react-globe.gl', 'Tailwind CSS', 'BERT', 'Hugging Face', 'Prisma ORM', 'shadcn/ui'],
+            'Tools & Technologies': ['Git', 'Fork', 'IntelliJ IDEA', 'Visual Studio Code', 'MATLAB', 'Kusto Explorer', 'Azure', 'Roblox Studio', 'TypeScript', 'Vite', 'WebSockets', 'C#', 'KQL', 'Docker', 'JavaScript'],
+            'APIs & Services': ['xAI API', 'Coinbase CDP', 'Claude AI', 'GPT/Gemini', 'Webonary APIs', 'Graph API', 'OAuth 2.0', 'Roblox APIs', 'Azure APIs', 'Vapi', 'Grok API', 'OpenAI GPT-4o', 'Google Cloud Translation API'],
             'Databases': ['MySQL', 'SQL Server', 'Azure Data Explorer', 'PostgreSQL', 'SQLite'],
         },
         stats: [
