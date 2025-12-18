@@ -85,7 +85,7 @@ export const profileData = {
     education: {
         school: 'STANFORD UNIVERSITY',
         degree: 'Bachelor of Science',
-        major: 'Computer Science, Computer Engineering',
+        major: 'Computer Science',
         dates: 'Anticipated Graduation: 06/2027',
         coursework: [
             'Artificial Intelligence',
