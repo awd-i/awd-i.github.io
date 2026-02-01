@@ -89,7 +89,7 @@ export const profileData = {
         dates: 'Anticipated Graduation: 06/2027',
         coursework: [
             'Artificial Intelligence',
-            'Operating Systems',
+            'ML',
             'VR',
             'Continuous Mathematics for ML',
             'Design & Analysis of Algorithms',
