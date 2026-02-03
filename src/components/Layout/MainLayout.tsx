@@ -21,7 +21,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     onBackToMenu
 }) => {
     return (
-        <div className="relative w-screen h-screen bg-black overflow-hidden flex flex-col md:flex-row">
+        <div className="w-screen h-screen bg-black flex items-center justify-center">
+            <div className="relative w-full h-full max-w-[1440px] max-h-[900px] bg-black overflow-hidden flex flex-col md:flex-row">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 to-black -z-10" />
 
@@ -68,6 +69,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
                     <div className="absolute -top-4 right-[-17%] w-32 h-8 bg-white -skew-x-12 -z-10 hidden md:block" />
                     <div className="absolute -bottom-4 -left-4 w-32 h-8 bg-white -skew-x-12 -z-10 hidden md:block" />
                 </div>
+            </div>
             </div>
         </div>
     );
