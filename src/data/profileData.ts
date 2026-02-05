@@ -53,6 +53,16 @@ export const profileData = {
         },
         {
             id: 'exp1',
+            company: 'Stanford VR (Virtual Human Interaction) Lab',
+            title: 'ML Research',
+            location: 'Stanford, CA',
+            dateRange: 'January 2026 - Present',
+            bullets: [
+                'Engineering a vision model training pipeline using YOLO and LabelStudio for multi-class person detection in XR settings to gain mixed-reality sociological insights from Meta Quest and Apple Vision headset video processing',
+            ],
+        },
+        {
+            id: 'exp2',
             company: 'Microsoft',
             title: 'Software Engineer Intern',
             location: 'Redmond, WA',
@@ -62,7 +72,7 @@ export const profileData = {
             ],
         },
         {
-            id: 'exp2',
+            id: 'exp3',
             company: 'Kashaya Language Lab, University of Pennsylvania',
             title: 'Software Engineer',
             location: 'Philadelphia, PA',
@@ -72,7 +82,7 @@ export const profileData = {
             ],
         },
         {
-            id: 'exp3',
+            id: 'exp4',
             company: 'ROBLOX',
             title: 'Game Developer & UI Designer',
             location: 'Broomfield, CO',
