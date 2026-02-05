@@ -56,7 +56,7 @@ export const profileData = {
             company: 'Stanford VR (Virtual Human Interaction) Lab',
             title: 'ML Research',
             location: 'Stanford, CA',
-            dateRange: 'January 2026 - Present',
+            dateRange: 'Present',
             bullets: [
                 'Engineering a vision model training pipeline using YOLO and LabelStudio for multi-class person detection in XR settings to gain mixed-reality sociological insights from Meta Quest and Apple Vision headset video processing',
             ],
