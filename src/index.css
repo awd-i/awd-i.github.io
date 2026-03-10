@@ -101,3 +101,11 @@
 .hologram-enter {
   animation: hologram-glitch 0.5s ease-in-out 1;
 }
+
+/* Scale content to fill viewport on larger monitors (desktop only, preserve mobile layout) */
+@media (min-width: 768px) {
+  .viewport-scale {
+    transform: scale(max(1, min(calc(100vw / 1440), calc(100vh / 900))));
+    transform-origin: center center;
+  }
+}

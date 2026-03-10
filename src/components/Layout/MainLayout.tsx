@@ -22,7 +22,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
 }) => {
     return (
         <div className="w-screen h-screen bg-black flex items-center justify-center">
-            <div className="relative w-full h-full max-w-[1440px] max-h-[900px] bg-black overflow-hidden flex flex-col md:flex-row">
+            <div className="relative w-full h-full max-w-[1440px] max-h-[900px] bg-black overflow-hidden flex flex-col md:flex-row viewport-scale">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 to-black -z-10" />
 
