@@ -196,7 +196,7 @@ export const profileData = {
         },
     ] as Project[],
     about: {
-        bio: "Welcome to my interactive portfolio, my name is Aidan Whitedeer. I'm a Stanford CS student with an interest in XR/VR, Robotics, Machine Perception, and NLP",
+        bio: "Welcome to my interactive portfolio, my name is Aidan Whitedeer. I'm a Stanford CS student concentrating in AI. Previously attended UPenn.",
         email: 'whitedeer@stanford.edu',
         github: 'https://github.com/awd-i',
         focusAreas: ['XR/VR', 'AI/ML', 'Machine Perception', 'Natural Language Processing', 'Robotics', 'Dynamic Systems'],
