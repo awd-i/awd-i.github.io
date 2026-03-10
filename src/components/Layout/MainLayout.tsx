@@ -61,7 +61,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
                 <div className={`relative transition-all duration-700 ease-in-out w-full h-full md:w-4/5 md:h-2/3 ${activeSection === 'about' ? 'md:w-5/6 md:h-4/5' : ''} flex items-center justify-center`}>
                     <div key={activeSection} className="hologram-enter w-full max-w-lg h-5/6 md:max-w-none md:h-full md:absolute md:inset-0">
                         <div className="w-full h-full bg-black/30 md:bg-black/60 backdrop-blur-md border-2 border-white rounded-lg md:rounded-none md:-skew-x-12 md:transform md:origin-bottom-left overflow-hidden">
-                            <div className="md:skew-x-12 w-full h-full overflow-y-auto p-6 pt-20 md:pt-8 custom-scrollbar text-sm font-mono md:text-base md:font-sans">
+                            <div className="md:skew-x-12 w-full h-full overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 md:pt-8 custom-scrollbar text-sm font-mono md:text-base md:font-sans min-w-0">
                                 {children}
                             </div>
                         </div>
