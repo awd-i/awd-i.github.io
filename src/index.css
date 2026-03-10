@@ -61,14 +61,43 @@
 
 .glitch-text::before {
   left: 2px;
-  text-shadow: -2px 0 #ff00de;
+  text-shadow: -2px 0 #e0e0e0;
   animation: glitch-1 3s infinite linear alternate-reverse;
   clip-path: inset(0 0 0 0);
 }
 
 .glitch-text::after {
   left: -2px;
-  text-shadow: 2px 0 #00fff2;
+  text-shadow: 2px 0 #888888;
   animation: glitch-2 2.5s infinite linear alternate-reverse;
   clip-path: inset(0 0 0 0);
+}
+
+/* Subtle hologram glitch on hover */
+@keyframes hologram-glitch {
+  0%, 100% {
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 transparent;
+  }
+  25% {
+    transform: translate(1px, -1px);
+    box-shadow: 1px -1px 0 rgba(0, 255, 255, 0.06), -1px 1px 0 rgba(255, 0, 255, 0.04);
+  }
+  50% {
+    transform: translate(-1px, 1px);
+    box-shadow: -1px 1px 0 rgba(255, 0, 255, 0.06), 1px -1px 0 rgba(0, 255, 255, 0.04);
+  }
+  75% {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(0, 255, 255, 0.04), -1px -1px 0 rgba(255, 0, 255, 0.06);
+  }
+}
+
+.hologram-hover:hover {
+  animation: hologram-glitch 0.5s ease-in-out;
+}
+
+/* Subtle hologram glitch when entering a section */
+.hologram-enter {
+  animation: hologram-glitch 0.5s ease-in-out 1;
 }

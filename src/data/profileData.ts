@@ -32,6 +32,7 @@ export interface About {
     bio: string;
     email?: string;
     github?: string;
+    twitter?: string;
     focusAreas: string[];
     technologies: {
         [category: string]: string[];
@@ -44,11 +45,13 @@ export const profileData = {
         {
             id: 'exp0',
             company: 'Uber',
-            title: 'Incoming Software Engineer Intern',
-            location: 'TBD',
+            title: 'Incoming Software Engineer Intern, Uber AI Platform Engineering Team',
+            location: 'San Francisco, CA',
             dateRange: 'Present',
             bullets: [
-                'Excited to develop infrastructure for car automation and transportation technology, real-time data processing, and working on distributed systems and scalable microservices architectures to support autonomous vehicle platforms',
+                'MLOps',
+                'Infrastructure',
+                'Distributed Systems',
             ],
         },
         {
@@ -98,14 +101,14 @@ export const profileData = {
         major: 'Computer Science',
         dates: 'Anticipated Graduation: 06/2027',
         coursework: [
-            'Artificial Intelligence',
-            'ML',
-            'VR',
-            'Continuous Mathematics for ML',
-            'Design & Analysis of Algorithms',
-            'Probability',
-            'Discrete Mathematics',
-            'Linear Algebra & Multivariable Calculus',
+            'Machine Learning',
+            'Deep Learning for Computer Vision',
+            'Deep Reinforcement Learning',
+            'Natural Language Processing',
+            'Continuous Math for ML',
+            'Algorithms',
+            'Organization & Systems',
+            'Advanced Topics in VR',
         ],
         honors: [
             '1st Place Technical Award 2025 Microsoft M365 Intern Copilot Agentic AI Hackathon',
@@ -199,6 +202,7 @@ export const profileData = {
         bio: "Welcome, my name is Aidan Whitedeer. I'm a Stanford CS student concentrating in AI. Previously attended Penn. Interested in Infrastructure, Distributed Systems, and Machine Learning. Portfolio inspired by the Persona series UI. I frequently update this, and am always looking for suggestions, so reach out :).",
         email: 'whitedeer@stanford.edu',
         github: 'https://github.com/awd-i',
+        twitter: 'https://x.com/a_whitedeer',
         focusAreas: ['XR/VR', 'AI/ML', 'Machine Perception', 'Natural Language Processing', 'Robotics', 'Dynamic Systems'],
         technologies: {
             'Frameworks & Libraries': ['React', 'PyTorch', 'Next.js', 'Express.js', 'Node.js', 'Framer Motion', 'Three.js', 'react-globe.gl', 'Tailwind CSS', 'BERT', 'Hugging Face', 'Prisma ORM', 'shadcn/ui'],

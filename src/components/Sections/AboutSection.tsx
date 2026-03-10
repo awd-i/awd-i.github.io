@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { profileData } from '../../data/profileData';
 import { SkewedPanel } from '../UI/SkewedPanel';
 import { Mail, Github } from 'lucide-react';
+import { XLogo } from '../UI/XLogo';
 
 export const AboutSection: React.FC = () => {
     const { about } = profileData;
@@ -30,7 +31,7 @@ export const AboutSection: React.FC = () => {
                             <p className="text-xs font-bold italic uppercase leading-relaxed text-black">
                                 {about.bio}
                             </p>
-                            <div className="flex items-center gap-4 flex-shrink-0 text-black">
+                            <div className="flex flex-col gap-2 flex-shrink-0 text-black">
                                 {about.email && (
                                     <a
                                         href={`mailto:${about.email}`}
@@ -49,6 +50,17 @@ export const AboutSection: React.FC = () => {
                                     >
                                         <Github size={14} className="group-hover:scale-110 transition-transform text-black" />
                                         awd-i
+                                    </a>
+                                )}
+                                {about.twitter && (
+                                    <a
+                                        href={about.twitter}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-1.5 text-xs font-mono hover:underline group whitespace-nowrap text-black"
+                                    >
+                                        <XLogo size={14} className="group-hover:scale-110 transition-transform text-black" />
+                                        @a_whitedeer
                                     </a>
                                 )}
                             </div>

@@ -25,6 +25,7 @@ export const ExperienceSection: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
                     >
+                        <div className="hologram-hover">
                         <SkewedPanel variant="outline" className="group hover:bg-white hover:text-black transition-colors duration-300 px-6 transform-none md:transform rounded-lg md:rounded-none overflow-hidden" innerClassName="transform-none md:transform">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
                                 <h3 className="text-2xl font-bold uppercase ml-0 md:ml-2 break-words w-full md:w-auto">{exp.company}</h3>
@@ -53,6 +54,7 @@ export const ExperienceSection: React.FC = () => {
                                 ))}
                             </ul>
                         </SkewedPanel>
+                        </div>
                     </motion.div>
                 ))}
             </div>

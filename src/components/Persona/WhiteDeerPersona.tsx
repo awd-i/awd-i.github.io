@@ -33,8 +33,8 @@ const DeerModel: React.FC<{ activeSection: string }> = ({ activeSection }) => {
             }
         });
 
-        // More prominent floating animation - focus on head area
-        const baseY = -7.5;
+        // More prominent floating animation - focus on head area (aligned between projects and about)
+        const baseY = -7.0;
         const floatingOffset = Math.sin(time * 0.8) * 0.15;
 
         // Section-based positioning and rotation - left-focused with head in view
