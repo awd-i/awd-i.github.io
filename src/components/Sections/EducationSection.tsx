@@ -14,7 +14,7 @@ export const EducationSection: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <h2 className="text-4xl font-display font-bold mb-4 border-b-4 border-white inline-block pr-12 ml-0 md:ml-12 transform-none md:transform md:-skew-x-12">
+                <h2 className="text-4xl font-display font-bold italic uppercase mb-4 border-b-4 border-white inline-block pr-12 ml-0 md:ml-12 transform-none md:transform md:-skew-x-12 glitch-text" data-text="EDUCATION">
                     EDUCATION
                 </h2>
             </motion.div>
