@@ -102,7 +102,7 @@ export const profileData = {
         dates: 'Anticipated Graduation: 06/2027',
         coursework: [
             'Machine Learning',
-            'Deep Learning for Computer Vision',
+            'Computer Vision',
             'Deep Reinforcement Learning',
             'Natural Language Processing',
             'Continuous Math for ML',
