@@ -103,6 +103,7 @@ export const profileData = {
         coursework: [
             'Machine Learning',
             'Computer Vision',
+            'Deep Reinforcement Learning',
             'Natural Language Processing',
             'Continuous Math for ML',
             'Algorithms',
