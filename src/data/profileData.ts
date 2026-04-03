@@ -44,8 +44,8 @@ export const profileData = {
     experience: [
         {
             id: 'exp0',
-            company: 'Uber',
-            title: 'Incoming Software Engineer Intern, Uber AI Platform Engineering Team',
+            company: 'Uber AI Platform',
+            title: 'Software Engineer Intern',
             location: 'San Francisco, CA',
             dateRange: 'Present',
             bullets: [
