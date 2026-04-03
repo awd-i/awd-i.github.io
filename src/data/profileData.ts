@@ -49,9 +49,7 @@ export const profileData = {
             location: 'San Francisco, CA',
             dateRange: 'Present',
             bullets: [
-                'MLOps',
-                'Infrastructure',
-                'Uber AI Platform Team',
+                'Uber AI Platform Team, Summer 2026',
             ],
         },
         {
