@@ -47,9 +47,9 @@ export const profileData = {
             company: 'Uber',
             title: 'Software Engineer Intern',
             location: 'San Francisco, CA',
-            dateRange: 'Present',
+            dateRange: 'Incoming',
             bullets: [
-                'Uber AI Platform Team, Summer 2026',
+                'Uber AI Platform Team'
             ],
         },
         {
