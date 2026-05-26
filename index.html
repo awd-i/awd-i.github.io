@@ -1,13 +1,1119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="https://www.csaimages.com//pix/AD8A/0/853205_T.JPG" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aidan's Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aidan Whitedeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d1b2e;
+      --bg-raised:    #101f35;
+      --bg-card:      #132040;
+      --bg-card-h:    #172548;
+      --border:       rgba(180,210,255,0.08);
+      --border-h:     rgba(180,210,255,0.16);
+      --text:         #c8d8f0;
+      --text-muted:   #5a7a9a;
+      --text-dim:     #2a3f5a;
+      --accent:       #f472b6;
+      --accent-s:     rgba(244,114,182,0.15);
+      --accent-glow:  rgba(244,114,182,0.07);
+      --frame-bg:     #081020;
+      --mono:         'JetBrains Mono', 'Fira Mono', monospace;
+    }
+
+    @font-face {
+      font-family: 'Tosh';
+      src: local('Tosh'), local('Tosh-Regular');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Tosh';
+      src: local('Tosh Bold'), local('Tosh-Bold');
+      font-weight: 700;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Tosh', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Stripe.dev grid background */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(180,210,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,210,255,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Page wrap ── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 0 80px;
+      display: flex;
+      align-items: center;
+      gap: 72px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-content { flex: 1; min-width: 0; }
+
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+      color: #e0eeff;
+    }
+
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .hero-bio span {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 15px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .social-btn svg { opacity: 0.6; transition: opacity 0.2s; }
+
+    .social-btn:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+      background: var(--bg-card);
+    }
+    .social-btn:hover svg { opacity: 1; }
+
+    .hero-photo {
+      width: 213px;
+      height: 213px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
+    }
+
+    .deer-circle {
+      width: 213px;
+      height: 213px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
+      background: #060d1a;
+    }
+
+    #deer-canvas {
+      width: 213px !important;
+      height: 213px !important;
+      display: block;
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-family: var(--mono);
+    }
+    .section-label::before {
+      content: '/ ';
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 15px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s ease;
+    }
+    .btn:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+      background: var(--bg-card);
+    }
+
+    .btn-accent {
+      border-color: rgba(124,106,247,0.3);
+      color: #a899f8;
+      background: rgba(124,106,247,0.09);
+    }
+    .btn-accent:hover {
+      border-color: rgba(124,106,247,0.55);
+      color: #c4b9fa;
+      background: rgba(124,106,247,0.16);
+    }
+
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+    .tag {
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      padding: 3px 10px;
+      border: 1px solid rgba(180,210,255,0.18);
+      border-radius: 0;
+      color: rgba(180,210,255,0.6);
+      background: rgba(180,210,255,0.06);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Video ── */
+    .vid {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    /* ─────────────────────────────────────
+       STRIPE FRAME (poster wrapper)
+    ───────────────────────────────────── */
+    .stripe-frame {
+      background: var(--frame-bg);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stripe-frame-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+    }
+
+    .stripe-frame-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 14px;
+      background: rgba(160,185,220,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sfb-icon {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: rgba(180,210,240,0.55);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .sfb-title {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: rgba(180,210,240,0.7);
+      letter-spacing: 0.15em;
+    }
+
+    .sfb-controls {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .sfb-controls svg {
+      opacity: 0.45;
+    }
+
+    .frame-body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .frame-body img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── FIG.2 geometric visual (inline SVG frame) ── */
+    .geo-frame {
+      background: #0c1425;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .geo-frame-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .geo-frame-svg {
+      width: 100%;
+      display: block;
+      background: #0c1425;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* ─────────────────────────────────────
+       RESEARCH
+    ───────────────────────────────────── */
+    .research-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      align-items: start;
+      margin-bottom: 68px;
+    }
+    .research-entry:last-child { margin-bottom: 0; }
+    .research-entry.flip { }
+    .research-entry.flip .research-media { order: 2; }
+    .research-entry.flip .research-info  { order: 1; }
+
+    .research-media { display: flex; flex-direction: column; gap: 10px; }
+
+    .research-info { padding-top: 4px; }
+
+    .research-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.38;
+      letter-spacing: -0.015em;
+      margin-bottom: 7px;
+    }
+
+    .research-authors {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .research-venue {
+      font-size: 0.76rem;
+      color: rgba(220,100,160,0.7);
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .research-abstract {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+      margin-bottom: 18px;
+    }
+
+    .research-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ─────────────────────────────────────
+       EXPERIENCE
+    ───────────────────────────────────── */
+    .exp-entry {
+      padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-entry:last-child { border-bottom: none; }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .exp-company {
+      font-size: 0.97rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .exp-company-sub {
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: rgba(220,100,160,0.7);
+      margin-left: 6px;
+    }
+
+    .exp-role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .exp-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.63;
+      max-width: 580px;
+    }
+
+    .exp-meta { text-align: right; }
+
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .exp-location {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .exp-video-wrap { margin-top: 18px; }
+
+    /* Side-by-side experience entry (like research) */
+    .exp-entry-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      align-items: start;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-entry-split:last-child { border-bottom: none; }
+    .exp-entry-split.flip .exp-split-info  { order: 2; }
+    .exp-entry-split.flip .exp-split-media { order: 1; }
+    .exp-split-info  { display: flex; flex-direction: column; }
+    .exp-split-media { display: flex; flex-direction: column; gap: 10px; }
+
+    @media (max-width: 700px) {
+      .exp-entry-split { grid-template-columns: 1fr; gap: 20px; }
+      .exp-entry-split.flip .exp-split-info  { order: 0; }
+      .exp-entry-split.flip .exp-split-media { order: 0; }
+    }
+
+    /* ─────────────────────────────────────
+       PROJECTS (tabbed)
+    ───────────────────────────────────── */
+    .projects-shell {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      background: var(--bg-raised);
+    }
+
+    .projects-nav {
+      background: rgba(8,16,32,0.6);
+      border-right: 1px solid var(--border);
+      padding: 6px 0;
+    }
+
+    .proj-tab {
+      display: block;
+      width: 100%;
+      padding: 11px 18px;
+      background: none;
+      border: none;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: left;
+      line-height: 1.3;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+
+    .proj-tab:hover {
+      color: var(--text);
+      background: var(--bg-raised);
+    }
+
+    .proj-tab.active {
+      color: var(--text);
+      background: var(--bg-raised);
+      border-left-color: var(--accent);
+    }
+
+    .proj-tab .tab-sub {
+      display: block;
+      font-size: 0.68rem;
+      color: rgba(244,114,182,0.7);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+
+    .projects-panels { padding: 28px 32px; }
+
+    .proj-panel { display: none; }
+    .proj-panel.active { display: block; }
+
+    .proj-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 3px;
+    }
+
+    .proj-award {
+      font-size: 0.76rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .proj-desc {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+      margin-bottom: 16px;
+    }
+
+    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    .proj-video { margin-bottom: 16px; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 44px 0 52px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      transition: color 0.18s;
+    }
+    .footer-link:hover { color: var(--text-muted); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    /* ── Background gradient orb ── */
+    .bg-orb {
+      position: fixed;
+      top: -300px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(244,114,182,0.06) 0%, rgba(13,27,46,0) 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-2 {
+      position: fixed;
+      bottom: -200px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(96,165,250,0.04) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; gap: 20px; padding: 60px 0 52px; max-width: 100%; }
+      .hero-photo { width: 120px; height: 120px; }
+      .research-entry { grid-template-columns: 1fr; gap: 24px; }
+      .research-entry.flip .research-media { order: 0; }
+      .research-entry.flip .research-info  { order: 0; }
+      .projects-shell { grid-template-columns: 1fr; }
+      .projects-nav { border-right: none; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 0; }
+      .proj-tab { border-left: none; border-bottom: 2px solid transparent; white-space: nowrap; padding: 12px 16px; flex-shrink: 0; }
+      .proj-tab.active { border-left-color: transparent; border-bottom-color: var(--accent); }
+      .proj-tab .tab-sub { display: none; }
+      .projects-panels { padding: 20px 18px; }
+      .exp-header { grid-template-columns: 1fr; }
+      .exp-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb"></div>
+<div class="bg-orb-2"></div>
+
+<div class="wrap">
+
+  <!-- ════════════════════════════════════
+       HERO
+  ════════════════════════════════════ -->
+  <header class="hero">
+    <div class="deer-circle">
+      <canvas id="deer-canvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-name">Aidan Whitedeer</h1>
+      <p class="hero-bio">
+        CS Undergraduate at Stanford and Researcher at Stanford Virtual Human Interaction Lab. Previously at <span>Microsoft</span>, building at <span>MTS Live</span>, incoming @ <span>Uber</span>. Research interests widely include Reinforcement Learning, World Models, and Virtual Spaces.
+      </p>
+      <div class="social-row">
+        <a href="mailto:awd@stanford.edu" class="social-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="https://github.com/awd-i" class="social-btn" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/awhitedeer/" class="social-btn" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://x.com/a_whitedeer" class="social-btn" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.727-8.842L1.254 2.25H8.08l4.256 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @a_whitedeer
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ════════════════════════════════════
+       RESEARCH
+  ════════════════════════════════════ -->
+  <section id="research">
+    <p class="section-label">Research</p>
+
+    <!-- ── Paper 1: Roblox RL ── -->
+    <div class="research-entry">
+      <div class="research-media">
+        <div class="stripe-frame">
+          <div class="stripe-frame-bg"></div>
+          <div class="stripe-frame-bar">
+            <span class="sfb-icon">&gt;_</span>
+            <span class="sfb-title">[ VIDEO ]</span>
+            <div class="sfb-controls">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+          </div>
+          <div class="frame-body">
+            <video style="width:100%;display:block;background:#000;" autoplay muted loop playsinline preload="auto">
+              <source src="assets/demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="research-info">
+        <h3 class="research-title">Deep Reinforcement Learning with Roblox Agents for Obbies (Obstacle Courses)</h3>
+        <p class="research-authors">Aidan Whitedeer, Alex Li, Cheney Sang</p>
+        <p class="research-venue">Department of Computer Science · Stanford University · 2026</p>
+        <p class="research-abstract">
+          A complete RL pipeline (Behavioral Cloning → DAgger → PPO) built inside Roblox Studio for training AI agents to navigate obstacle courses. We instrument a custom environment with Luau, bridge game physics to a PyTorch policy loop, and evaluate generalization across procedurally generated obby layouts.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Paper 2: Cascade Sentiment ── -->
+    <div class="research-entry flip">
+      <div class="research-media">
+        <div class="stripe-frame">
+          <div class="stripe-frame-bg"></div>
+          <div class="stripe-frame-bar">
+            <span class="sfb-icon">&gt;_</span>
+            <span class="sfb-title">[ POSTER ]</span>
+            <div class="sfb-controls">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+          </div>
+          <div class="frame-body">
+            <img src="assets/poster.jpg" alt="Sentiment-Augmented Cross-Sectional Stock Selection Research Poster">
+          </div>
+        </div>
+      </div>
+      <div class="research-info">
+        <h3 class="research-title">Sentiment-Augmented Cross-Sectional Stock Selection</h3>
+        <p class="research-authors">Alex Li, Mykhailo Prokutin, Aidan Whitedeer</p>
+        <p class="research-venue">Department of Computer Science · Stanford University · 2026</p>
+        <p class="research-abstract">
+          We investigate whether sequentially filtering cross-sectional equity signals (first by traditional factors, then by FinBERT sentiment) outperforms joint modeling, and identify the conditions under which sentiment adds conditional predictive value within a factor-screened universe.
+        </p>
+        <div class="research-links">
+          <a href="https://drive.google.com/drive/home" class="btn btn-accent" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Paper ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       EXPERIENCE
+  ════════════════════════════════════ -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+
+    <!-- Uber -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">Uber</div>
+          <div class="exp-role">Incoming Software Engineer Intern</div>
+          <div class="exp-desc">MLOps, Machine Learning Engineering &amp; Distributed Systems · Uber AI</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">Summer 2026</div>
+          <div class="exp-location">San Francisco, CA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MTS Live -->
+    <div class="exp-entry-split">
+      <div class="exp-split-info">
+        <div class="exp-company">MTS Live<span class="exp-company-sub">(Monitoring the Situation)</span></div>
+        <div class="exp-role">Member of Technical Staff</div>
+        <div class="exp-desc">Building and designing interactive web experiences that translate frontier AI research into accessible editorial pieces. Own the full stack: visualization, frontend, animations, editorial UX.</div>
+        <div style="margin-top:10px;">
+          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">May 2026 – Present · San Francisco, CA</span>
+        </div>
+      </div>
+      <div class="exp-split-media">
+        <div class="stripe-frame">
+          <div class="stripe-frame-bg"></div>
+          <div class="stripe-frame-bar">
+            <span class="sfb-icon">&gt;_</span>
+            <span class="sfb-title">[ VIDEO ]</span>
+            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          </div>
+          <div class="frame-body">
+            <video style="width:100%;display:block;background:#000;" autoplay muted loop playsinline preload="auto">
+              <source src="assets/mts-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stanford VR Lab -->
+    <div class="exp-entry-split flip">
+      <div class="exp-split-info">
+        <div class="exp-company">Stanford VR Lab<span class="exp-company-sub">(Virtual Human Interaction Lab)</span></div>
+        <div class="exp-role">ML Research</div>
+        <div class="exp-desc">Engineering a vision model training pipeline using YOLO, LabelStudio, and OpenCV for multi-class person detection in XR settings, gaining mixed-reality sociological insights from Meta Quest and Apple Vision headset video.</div>
+        <div style="margin-top:10px;">
+          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">Jan 2026 – Present · Stanford, CA</span>
+        </div>
+      </div>
+      <div class="exp-split-media">
+        <div class="stripe-frame">
+          <div class="stripe-frame-bg"></div>
+          <div class="stripe-frame-bar">
+            <span class="sfb-icon">&gt;_</span>
+            <span class="sfb-title">[ IMAGE ]</span>
+            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          </div>
+          <div class="frame-body">
+            <img src="assets/vr-detection.png" alt="YOLO multi-class headset detection" style="width:100%;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Microsoft -->
+    <div class="exp-entry-split">
+      <div class="exp-split-info">
+        <div class="exp-company">Microsoft</div>
+        <div class="exp-role">Software Engineer Intern</div>
+        <div class="exp-desc">Built an interactive outage dashboard with a trained LLM analyst using React, C#, TypeScript, KQL, and Azure, featuring real-time geo-visualization, automated incident analysis, and insights generation for operational monitoring. <strong style="color:rgba(255,255,255,0.5);font-weight:500;">Won 1st Place · M365 Copilot Agentic AI Hackathon.</strong></div>
+        <div style="margin-top:10px;">
+          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">May – Aug 2025 · Redmond, WA</span>
+        </div>
+      </div>
+      <div class="exp-split-media">
+        <div class="stripe-frame">
+          <div class="stripe-frame-bg"></div>
+          <div class="stripe-frame-bar">
+            <span class="sfb-icon">&gt;_</span>
+            <span class="sfb-title">[ IMAGE ]</span>
+            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          </div>
+          <div class="frame-body">
+            <img src="assets/microsoft-dashboard2.png" alt="Microsoft 365 Network Outages Dashboard" style="width:100%;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roblox -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">Roblox</div>
+          <div class="exp-role">Game Developer &amp; UI Designer</div>
+          <div class="exp-desc">Developed 20+ online games with 4M+ cumulative plays and ~$15,000 in earnings using Lua, MySQL, and object-oriented programming.</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">2014 – 2022</div>
+          <div class="exp-location">Broomfield, CO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       PROJECTS
+  ════════════════════════════════════ -->
+  <section id="projects">
+    <p class="section-label">Featured Projects</p>
+
+    <div class="projects-shell">
+      <!-- Left nav tabs -->
+      <nav class="projects-nav" aria-label="Projects">
+        <button class="proj-tab active" onclick="showProj('xbeat', this)">
+          xBeat
+          <span class="tab-sub">AI Voice DJ · xAI Hackathon</span>
+        </button>
+        <button class="proj-tab" onclick="showProj('giode', this)">
+          GIODE SDR
+          <span class="tab-sub">AI Sales Dashboard</span>
+        </button>
+
+        <button class="proj-tab" onclick="showProj('sonus', this)">
+          Sonus
+          <span class="tab-sub">Voice Payment · YC Hackathon</span>
+        </button>
+        <button class="proj-tab" onclick="showProj('dreamstarter', this)">
+          Jiwere Elder Intelligence
+          <span class="tab-sub">DreamStarter Grant · $20K</span>
+        </button>
+      </nav>
+
+      <!-- Right panels -->
+      <div class="projects-panels">
+
+        <!-- xBeat -->
+        <div class="proj-panel active" id="panel-xbeat">
+          <div class="proj-title">xBeat: AI-Powered Voice DJ Panel</div>
+          <div class="proj-award">xAI Hackathon · Grok Voice Track</div>
+          <div class="proj-video">
+            <video class="vid" autoplay muted loop playsinline preload="auto">
+              <source src="assets/xbeat-demo.mov" type="video/mp4">
+            </video>
+          </div>
+          <p class="proj-desc">
+            An AI-powered DJ system with dual-deck audio engine, BPM detection, automated transitions, 3-band EQ, and bass/voice/melody isolation. Built with Next.js 16, React 19, TypeScript, and Grok/X API integration. Features a real-time 3D visualizer with Three.js/React Three Fiber, voice control with speech recognition and TTS, and AI copilot music automation.
+          </p>
+          <div class="tags">
+            <span class="tag">Next.js 16</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Three.js</span>
+            <span class="tag">Web Audio API</span>
+            <span class="tag">Grok API</span>
+            <span class="tag">React 19</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/awd-i/xBeat" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+        <!-- GIODE SDR -->
+        <div class="proj-panel" id="panel-giode">
+          <div class="proj-title">GIODE SDR: AI-Powered Human Sales Dashboard</div>
+          <div class="proj-award">AI-Powered SDR System · Automated Pipeline Management</div>
+          <div class="proj-video">
+            <video class="vid" autoplay muted loop playsinline preload="auto">
+              <source src="assets/giode-demo.mov" type="video/mp4">
+            </video>
+          </div>
+          <p class="proj-desc">
+            An AI-powered SDR system with automated lead scoring and pipeline management. Built automated lead scoring, email generation, and pipeline management with REST APIs, multi-model evaluation, error handling with retries, and production-ready architecture.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Multi-model LLM</span>
+            <span class="tag">Lead Scoring</span>
+            <span class="tag">Pipeline</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/awd-i/GIODESDR" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+        <!-- Sonus -->
+        <div class="proj-panel" id="panel-sonus">
+          <div class="proj-title">Sonus: Voice Payment Interface</div>
+          <div class="proj-award">2nd Place · Coinbase Agentic Payments YC Hackathon</div>
+          <p class="proj-desc">
+            An AI-powered Web3 payment system built with TypeScript/Next.js, Coinbase CDP wallets, Claude agents, and Vapi voice calls. Supports autonomous transaction flows, HTTP 402 payments, cost-based tool chaining, phone approvals, and gas-abstracted on-chain payments using the Coinbase + Anthropic SDK.
+          </p>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Coinbase CDP</span>
+            <span class="tag">Claude Agents</span>
+            <span class="tag">Vapi</span>
+            <span class="tag">Web3</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/tonywangs/locus-agentic-hackathon" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+        <!-- DreamStarter -->
+        <div class="proj-panel" id="panel-dreamstarter">
+          <div class="proj-title">Jiwere Elder Intelligence</div>
+          <div class="proj-award">DreamStarter · Running Strong for American Indian Youth · 2025</div>
+          <p class="proj-desc">
+            Creating framework for tribes to finetune mBERT models for endangered Native American Languages. Working with Raices Collaboration Project, mentored by Ken Attocknie. Received Dreamstarter Grant for $20,000 towards the project.
+          </p>
+          <div class="tags">
+            <span class="tag">AI / NLP</span>
+            <span class="tag">mBERT</span>
+            <span class="tag">Language Preservation</span>
+
+          </div>
+          <div class="proj-links">
+            <a href="https://indianyouth.org/2025-dreamstarter-aidan-whitedeer/" class="btn btn-accent" target="_blank" rel="noopener">Read More ↗</a>
+          </div>
+        </div>
+
+      </div><!-- /projects-panels -->
+    </div><!-- /projects-shell -->
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:awd@stanford.edu" class="footer-link">awd@stanford.edu</a>
+      <a href="https://github.com/awd-i" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/awhitedeer/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/a_whitedeer" class="footer-link" target="_blank" rel="noopener">@a_whitedeer</a>
+    </div>
+    <p class="footer-copy">Aidan Whitedeer · Stanford CS · 2026</p>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script type="module">
+  import * as THREE from 'three';
+  import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+
+  const SIZE = 213;
+  const canvas = document.getElementById('deer-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(SIZE, SIZE);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+  camera.position.set(0, 0, 10);
+  camera.lookAt(0, 0, 0);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  const pl1 = new THREE.PointLight(0xffffff, 1.5);
+  pl1.position.set(5, 5, 5);
+  scene.add(pl1);
+  const pl2 = new THREE.PointLight(0x4488ff, 0.8);
+  pl2.position.set(-5, -3, 3);
+  scene.add(pl2);
+
+  const vertexShader = `
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    void main() {
+      vNormal = normalize(normalMatrix * normal);
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    uniform float time;
+    uniform vec3 color;
+    uniform vec3 glowColor;
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    void main() {
+      float gridSize = 0.15;
+      float gridThickness = 0.03;
+      float gridX = abs(fract(vPosition.x / gridSize) - 0.5) * 2.0;
+      float gridY = abs(fract(vPosition.y / gridSize) - 0.5) * 2.0;
+      float gridZ = abs(fract(vPosition.z / gridSize) - 0.5) * 2.0;
+      float grid = smoothstep(1.0 - gridThickness, 1.0, max(max(gridX, gridY), gridZ));
+      float scanLine = sin((vPosition.y - time * 2.0) * 30.0) * 0.5 + 0.5;
+      scanLine = smoothstep(0.8, 1.0, scanLine);
+      float bands = sin(vPosition.y * 6.0 - time * 1.5) * 0.5 + 0.5;
+      bands = smoothstep(0.6, 0.8, bands);
+      vec3 viewDirection = normalize(cameraPosition - vPosition);
+      float fresnel = pow(1.0 - abs(dot(viewDirection, vNormal)), 2.5);
+      vec3 finalColor = color * 0.4;
+      finalColor += vec3(1.0) * grid * 0.8;
+      finalColor += vec3(1.0) * scanLine * 0.6;
+      finalColor += color * bands * 0.3;
+      finalColor += glowColor * fresnel * 0.9;
+      finalColor += vec3(1.0) * grid * scanLine * 0.5;
+      float alpha = fresnel * 0.7 + grid * 0.3 + scanLine * 0.2 + 0.3;
+      gl_FragColor = vec4(finalColor, alpha);
+    }
+  `;
+
+  let deerObj = null;
+  const loader = new OBJLoader();
+  loader.load('assets/Deer.obj', (obj) => {
+    const box = new THREE.Box3().setFromObject(obj);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const scale = 7 / maxDim;
+    obj.scale.setScalar(scale);
+    obj.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+    obj.position.y += 0.2;
+
+    obj.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new THREE.ShaderMaterial({
+          uniforms: {
+            time: { value: 0 },
+            color: { value: new THREE.Color(0xc8d8f0) },
+            glowColor: { value: new THREE.Color(0xc8d8f0) },
+          },
+          vertexShader,
+          fragmentShader,
+          transparent: true,
+          side: THREE.DoubleSide,
+          blending: THREE.AdditiveBlending,
+        });
+      }
+    });
+
+    scene.add(obj);
+    deerObj = obj;
+  });
+
+  const clock = new THREE.Clock();
+  (function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    if (deerObj) {
+      deerObj.rotation.y = t * 1.2;
+      deerObj.traverse((child) => {
+        if (child.material?.uniforms?.time) child.material.uniforms.time.value = t;
+      });
+    }
+    renderer.render(scene, camera);
+  })();
+</script>
+
+<script>
+  function showProj(id, btn) {
+    document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+
+    // autoplay video in newly activated panel
+    const vid = document.getElementById('panel-' + id).querySelector('video');
+    if (vid) { vid.currentTime = 0; vid.play().catch(() => {}); }
+  }
+</script>
+
+</body>
 </html>
