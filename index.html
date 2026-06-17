@@ -469,6 +469,45 @@
     .exp-split-info  { display: flex; flex-direction: column; }
     .exp-split-media { display: flex; flex-direction: column; gap: 10px; }
 
+    /* Clipped X embeds (replace the demo video) */
+    .tweet-box-lg, .tweet-mini {
+      position: relative;
+      overflow: hidden;
+      background: #15202b;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    /* Big card — fills the media column so it matches the left column height */
+    .tweet-box-lg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .mts-media { position: relative; align-self: stretch; }
+    .tweet-box-lg .twitter-tweet { width: 100% !important; margin: 0 !important; }
+
+    /* Row of three small cards below the date (left column) */
+    .tweet-row { display: flex; gap: 5px; margin-top: 16px; }
+    .tweet-mini { flex: 1 1 0; min-width: 0; height: 150px; }
+    .tweet-mini .tm-z { zoom: 0.5; }
+    .tweet-mini .twitter-tweet { margin: 0 !important; }
+    .tweet-mini .tw-fade { height: 50px; }
+
+    .tweet-box-lg .twitter-tweet,
+    .tweet-box-lg iframe,
+    .tweet-mini twitterwidget,
+    .tweet-mini iframe { margin: 0 !important; }
+
+    .tw-fade {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 70px; z-index: 3; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(21,32,43,0), #15202b 85%);
+    }
+    .tw-open {
+      position: absolute; right: 12px; bottom: 12px;
+      width: 38px; height: 38px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      background: #1d9bf0; z-index: 4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+    .tw-open-sm { width: 26px; height: 26px; right: 7px; bottom: 7px; border-radius: 7px; }
+    .tw-open-sm svg { width: 13px; height: 13px; }
+
     @media (max-width: 700px) {
       .exp-entry-split { grid-template-columns: 1fr; gap: 20px; }
       .exp-entry-split.flip .exp-split-info  { order: 0; }
@@ -764,7 +803,7 @@
     </div>
 
     <!-- MTS Live -->
-    <div class="exp-entry-split">
+    <div class="exp-entry-split" style="align-items:stretch;">
       <div class="exp-split-info">
         <div class="exp-company">MTS Live<span class="exp-company-sub">(Monitoring the Situation)</span></div>
         <div class="exp-role">Member of Technical Staff</div>
@@ -779,20 +818,37 @@
         <div style="margin-top:10px;">
           <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">May 2026 – Present · San Francisco, CA</span>
         </div>
+        <div class="tweet-row">
+          <div class="tweet-mini">
+            <div class="tm-z"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="250"><p lang="en" dir="ltr">We built a way for you to preview ElevenLabs&#39; new musicgen model, Music V2, along with two audio models: Voice and Scribe.<a href="https://t.co/oIQ8cpYZp8">https://t.co/oIQ8cpYZp8</a> <a href="https://t.co/7jkh2T0tLz">https://t.co/7jkh2T0tLz</a> <a href="https://t.co/MVMJSivNAB">pic.twitter.com/MVMJSivNAB</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2061582150693175772?ref_src=twsrc%5Etfw">June 1, 2026</a></blockquote></div>
+            <div class="tw-fade"></div>
+            <a class="tw-open tw-open-sm" href="https://x.com/MTSlive/status/2061582150693175772" target="_blank" rel="noopener" aria-label="Open tweet">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <div class="tweet-mini">
+            <div class="tm-z"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="250"><p lang="en" dir="ltr">OpenAI and Anthropic&#39;s Mythos just independently disproved Erdös&#39; unit-distance conjecture six days apart.<br><br>We broke down the math, the models, and what it means that machines are now formally proving theorems.<br><br>Read the full drop: <a href="https://t.co/neBOdAKu3J">https://t.co/neBOdAKu3J</a> <a href="https://t.co/UQXR0MP1cl">pic.twitter.com/UQXR0MP1cl</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2060046619639480482?ref_src=twsrc%5Etfw">May 28, 2026</a></blockquote></div>
+            <div class="tw-fade"></div>
+            <a class="tw-open tw-open-sm" href="https://x.com/MTSlive/status/2060046619639480482" target="_blank" rel="noopener" aria-label="Open tweet">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <div class="tweet-mini">
+            <div class="tm-z"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="250"><p lang="en" dir="ltr">Personal agents have gone mainstream.<br><br>Always-on software that runs on your machine: it reads your messages, writes its own code and handles tasks on its own.<br><br>We broke down the loop, the projects, and what exactly makes them so useful for everyday work. <a href="https://t.co/Ilenw5celC">https://t.co/Ilenw5celC</a> <a href="https://t.co/0xAgVF43km">pic.twitter.com/0xAgVF43km</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2067004290393428300?ref_src=twsrc%5Etfw">June 16, 2026</a></blockquote></div>
+            <div class="tw-fade"></div>
+            <a class="tw-open tw-open-sm" href="https://x.com/MTSlive/status/2067004290393428300" target="_blank" rel="noopener" aria-label="Open tweet">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="exp-split-media">
-        <div class="stripe-frame">
-          <div class="stripe-frame-bg"></div>
-          <div class="stripe-frame-bar">
-            <span class="sfb-icon">&gt;_</span>
-            <span class="sfb-title">[ VIDEO ]</span>
-            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
-          </div>
-          <div class="frame-body">
-            <video style="width:100%;display:block;background:#000;" autoplay muted loop playsinline preload="auto">
-              <source src="assets/mts-demo.mp4" type="video/mp4">
-            </video>
-          </div>
+      <div class="exp-split-media mts-media">
+        <div class="tweet-box-lg">
+          <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="550"><p lang="en" dir="ltr">Interesting. <a href="https://t.co/Vt7fvjrShj">https://t.co/Vt7fvjrShj</a></p>&mdash; Marc Andreessen 🇺🇸 (@pmarca) <a href="https://x.com/pmarca/status/2059026564336284027?ref_src=twsrc%5Etfw">May 25, 2026</a></blockquote>
+          <div class="tw-fade"></div>
+          <a class="tw-open" href="https://x.com/pmarca/status/2059026564336284027" target="_blank" rel="noopener" aria-label="Open tweet">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1129,5 +1185,6 @@
   }
 </script>
 
+  <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
