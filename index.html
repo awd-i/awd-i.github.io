@@ -46,7 +46,7 @@
       font-weight: 700;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
     body {
       background: var(--bg);
@@ -474,7 +474,7 @@
       position: relative;
       overflow: hidden;
       background: #15202b;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: none;
       border-radius: 16px;
     }
     /* Big card — fills the media column so it matches the left column height */
@@ -513,6 +513,17 @@
       .exp-entry-split { grid-template-columns: 1fr; gap: 20px; }
       .exp-entry-split.flip .exp-split-info  { order: 0; }
       .exp-entry-split.flip .exp-split-media { order: 0; }
+
+      /* MTS Live: stack as text → Marc tweet → 3 mini tweets, text stays full size */
+      .exp-entry-split:has(.mts-media) { display: flex; flex-direction: column; gap: 0; }
+      .exp-entry-split:has(.mts-media) .exp-split-info { display: contents; }
+      .exp-entry-split:has(.mts-media) .mts-media {
+        order: 1; position: static; align-self: stretch; margin-top: 20px;
+      }
+      .exp-entry-split:has(.mts-media) .mts-media .tweet-box-lg {
+        position: relative; inset: auto; width: 100%; height: auto;
+      }
+      .exp-entry-split:has(.mts-media) .tweet-row { order: 2; margin-top: 16px; }
     }
 
     /* ─────────────────────────────────────
