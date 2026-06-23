@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://platform.x.com https://platform.twitter.com https://cdn.syndication.twimg.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://platform.twitter.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob: https://pbs.twimg.com https://abs.twimg.com https://syndication.twitter.com https://platform.twitter.com;
+    media-src 'self';
+    frame-src https://platform.x.com https://platform.twitter.com https://syndication.twitter.com https://x.com https://twitter.com;
+    connect-src 'self' https://cdn.syndication.twimg.com https://syndication.twitter.com;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+  ">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Aidan Whitedeer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -941,7 +956,11 @@
     <div class="projects-shell">
       <!-- Left nav tabs -->
       <nav class="projects-nav" aria-label="Projects">
-        <button class="proj-tab active" onclick="showProj('xbeat', this)">
+        <button class="proj-tab active" onclick="showProj('modelware', this)">
+          ModelWare
+          <span class="tab-sub">Test-Time-Training for HW Config · LoRA RL</span>
+        </button>
+        <button class="proj-tab" onclick="showProj('xbeat', this)">
           xBeat
           <span class="tab-sub">AI Voice DJ · xAI Hackathon</span>
         </button>
@@ -963,8 +982,32 @@
       <!-- Right panels -->
       <div class="projects-panels">
 
+        <!-- ModelWare -->
+        <div class="proj-panel active" id="panel-modelware">
+          <div class="proj-title">ModelWare: Test-Time-Training for Hardware Configuration</div>
+          <div class="proj-award">RL-Finetuned LLM for HLS · Bit-Accurate Reward from C-Sim + Vivado Synthesis</div>
+          <div style="margin: 0 0 16px; border: 1px solid var(--border);">
+            <img src="assets/modelware.png" alt="ModelWare — burnt config-generation agent" style="width:100%;display:block;">
+          </div>
+          <p class="proj-desc">
+            A test-time-training loop that finetunes a config-generating LLM via LoRA (SFT/DPO) on high-reward (prompt → hardware config) trajectories, with reward computed from bit-accurate C-simulation and Vivado synthesis. Engineered lexicographic, budget-normalized rewards over a precision × reuse × strategy search space, plus an agentic repair loop that recovers from compile failures. Beats random-search, surrogate, and frozen-LLM baselines.
+          </p>
+          <div class="tags">
+            <span class="tag">LoRA (SFT/DPO)</span>
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">Test-Time Training</span>
+            <span class="tag">Vivado HLS</span>
+            <span class="tag">C-Simulation</span>
+            <span class="tag">Agentic Repair Loop</span>
+            <span class="tag">Python</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://devpost.com/software/modelware" class="btn btn-accent" target="_blank" rel="noopener">DevPost ↗</a>
+          </div>
+        </div>
+
         <!-- xBeat -->
-        <div class="proj-panel active" id="panel-xbeat">
+        <div class="proj-panel" id="panel-xbeat">
           <div class="proj-title">xBeat: AI-Powered Voice DJ Panel</div>
           <div class="proj-award">xAI Hackathon · Grok Voice Track</div>
           <div class="proj-video">
