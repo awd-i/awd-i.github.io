@@ -956,8 +956,8 @@
     <div class="projects-shell">
       <!-- Left nav tabs -->
       <nav class="projects-nav" aria-label="Projects">
-        <button class="proj-tab active" onclick="showProj('modelware', this)">
-          ModelWare
+        <button class="proj-tab active" onclick="showProj('burnttt', this)">
+          BurnTTT
           <span class="tab-sub">Test-Time-Training for HW Config · LoRA RL</span>
         </button>
         <button class="proj-tab" onclick="showProj('xbeat', this)">
@@ -982,12 +982,12 @@
       <!-- Right panels -->
       <div class="projects-panels">
 
-        <!-- ModelWare -->
-        <div class="proj-panel active" id="panel-modelware">
-          <div class="proj-title">ModelWare: Test-Time-Training for Hardware Configuration</div>
+        <!-- BurnTTT -->
+        <div class="proj-panel active" id="panel-burnttt">
+          <div class="proj-title">BurnTTT: Test-Time-Training for Hardware Configuration</div>
           <div class="proj-award">RL-Finetuned LLM for HLS · Bit-Accurate Reward from C-Sim + Vivado Synthesis</div>
           <div style="margin: 0 0 16px; border: 1px solid var(--border);">
-            <img src="assets/modelware.png" alt="ModelWare — burnt config-generation agent" style="width:100%;display:block;">
+            <img src="assets/modelware.png" alt="BurnTTT — config-generation agent" style="width:100%;display:block;">
           </div>
           <p class="proj-desc">
             A test-time-training loop that finetunes a config-generating LLM via LoRA (SFT/DPO) on high-reward (prompt → hardware config) trajectories, with reward computed from bit-accurate C-simulation and Vivado synthesis. Engineered lexicographic, budget-normalized rewards over a precision × reuse × strategy search space, plus an agentic repair loop that recovers from compile failures. Beats random-search, surrogate, and frozen-LLM baselines.
