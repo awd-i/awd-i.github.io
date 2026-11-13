@@ -101,6 +101,7 @@
       color: var(--text-muted);
       line-height: 1.7;
     }
+    .hero-bio .hl { color: var(--accent); font-weight: 500; }
 
     .hero-photo {
       width: 180px;
@@ -156,9 +157,11 @@
 
 
     .org-link {
+      color: var(--accent);
       border-bottom: 1px solid rgba(244,114,182,0.35);
       transition: color 0.18s, border-color 0.18s;
     }
+    .org-hl { color: var(--accent); }
     .org-link:hover { color: var(--accent); border-color: var(--accent); }
 
     /* Contact */
@@ -228,7 +231,7 @@
     <img class="hero-photo" src="assets/profile.jpg" alt="Aidan Whitedeer">
     <div class="hero-content">
       <h1 class="hero-name">Aidan Whitedeer</h1>
-      <p class="hero-bio">I'm a coterminal BS/MS student at Stanford studying Computer Science, advised by Thomas Icard, broadly interested in Deep Learning and Human-Computer Interaction. Did some undergrad at Penn as well.</p>
+      <p class="hero-bio">I'm a coterminal <span class="hl">BS/MS</span> student at <span class="hl">Stanford</span> studying <span class="hl">Computer Science</span>, advised by <span class="hl">Thomas Icard</span>, broadly interested in Deep Learning and Human-Computer Interaction. Did some undergrad at <span class="hl">Penn</span> as well.</p>
     </div>
   </header>
 
@@ -236,17 +239,17 @@
     <p class="section-label">Experience</p>
 
     <div class="entry">
-      <div class="entry-title">Research @ Mila, Quebec Artificial Intelligence Institute<span class="sep">|</span>Advised by Shawn Tsosie and Michael Running Wolf</div>
+      <div class="entry-title">Research @ <a class="org-link" href="https://mila.quebec/en/ai4humanity/applied-projects/first-languages-ai-reality" target="_blank" rel="noopener">Mila, Quebec Artificial Intelligence Institute</a><span class="sep">|</span>Advised by Shawn Tsosie and Michael Running Wolf</div>
       <p class="entry-desc">Post-Training for LRLs with synthetic curricula.</p>
     </div>
 
     <div class="entry">
-      <div class="entry-title">Engineering @ Uber AI, Uber Technologies</div>
+      <div class="entry-title">Engineering @ <a class="org-link" href="https://www.uber.com/us/en/blog/engineering/uber-ai/" target="_blank" rel="noopener">Uber AI, Uber Technologies</a></div>
       <p class="entry-desc">Agent Building, Benchmarking, and Autonomous Engineering Workflows for Michelangelo (Uber's ML Control Plane).</p>
     </div>
 
     <div class="entry">
-      <div class="entry-title">Research Assistant @ Stanford Virtual Human Interaction Lab<span class="sep">|</span>Advised by Jeremy Bailenson</div>
+      <div class="entry-title">Research Assistant @ <a class="org-link" href="https://vhil.stanford.edu/" target="_blank" rel="noopener">Stanford Virtual Human Interaction Lab</a><span class="sep">|</span>Advised by Jeremy Bailenson</div>
       <p class="entry-desc">Mixed-Reality Social Perception and Human Behavior Modeling on Meta Quests with OpenCV, YOLO, and RF-DETR.</p>
     </div>
 
@@ -256,12 +259,12 @@
     </div>
 
     <div class="entry">
-      <div class="entry-title">Engineering @ Microsoft</div>
+      <div class="entry-title">Engineering @ <span class="org-hl">Microsoft</span></div>
       <p class="entry-desc">Worked on internal AI geographic outage tooling.</p>
     </div>
 
     <div class="entry">
-      <div class="entry-title">Game Developing @ Roblox</div>
+      <div class="entry-title">Game Developing @ <span class="org-hl">Roblox</span></div>
       <p class="entry-desc">Gained 4,000,000 player visits &amp; 15k+ USD worth of accumulated revenue by 12.</p>
     </div>
   </section>
@@ -270,7 +273,7 @@
     <p class="section-label">Projects</p>
 
     <div class="entry">
-      <div class="entry-title">Roblox Deep-RL Obstacle Course Agents, CS224R Research Project</div>
+      <div class="entry-title">Roblox Deep-RL Obstacle Course Agents, CS224R Research Project <a class="ul-link" href="https://cs224r.stanford.edu/projects/pdfs/Alex%20Li%20Cheney%20Sang%20Aidan%20Whitedeer%20submission_416286475/CS224RPaper_updated__1_.pdf" target="_blank" rel="noopener">Paper</a></div>
       <p class="entry-desc">Used PPO to train Roblox agents to beat novel obstacle courses.</p>
     </div>
 
@@ -285,7 +288,7 @@
     </div>
 
     <div class="entry">
-      <div class="entry-title">BurnTTT, Honorable Mention, Inference-Time Compute Hackathon Project</div>
+      <div class="entry-title">BurnTTT - Honorable Mention, Anthropic x Cognition x Etched x Mercor Inference-Time Compute Hackathon</div>
       <p class="entry-desc">Built a LoRA SFT/DPO loop that improves LLM-generated hardware configs using C-simulation and synthesis rewards with an agentic compile-repair cycle.</p>
     </div>
   </section>
