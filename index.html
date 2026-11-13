@@ -155,6 +155,12 @@
     .entry-title .ul-link:hover { color: var(--accent); }
 
 
+    .org-link {
+      border-bottom: 1px solid rgba(244,114,182,0.35);
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .org-link:hover { color: var(--accent); border-color: var(--accent); }
+
     /* Contact */
     .contact-row {
       display: flex;
@@ -245,7 +251,7 @@
     </div>
 
     <div class="entry">
-      <div class="entry-title">Engineering &amp; Product @ MTS</div>
+      <div class="entry-title">Engineering &amp; Product @ <a class="org-link" href="https://www.mts.now/" target="_blank" rel="noopener">MTS Live (Monitoring the Situation)</a></div>
       <p class="entry-desc">Solo-engineer, dropped tons of cool products with teams at OpenAI, ElevenLabs, Neon, and Databricks.</p>
     </div>
 
