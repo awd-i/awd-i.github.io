@@ -22,14 +22,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -110,17 +102,16 @@
       line-height: 1.7;
     }
 
-    .deer-circle {
+    .hero-photo {
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      overflow: hidden;
+      object-fit: cover;
+      object-position: center;
       border: 2px solid var(--border);
       flex-shrink: 0;
       box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
-      background: #060d1a;
     }
-    #deer-canvas { width: 180px !important; height: 180px !important; display: block; }
 
     /* Sections */
     section {
@@ -163,10 +154,6 @@
     .entry-title .ul-link { font-weight: 500; font-size: 0.92rem; color: var(--text-muted); margin-left: 6px; }
     .entry-title .ul-link:hover { color: var(--accent); }
 
-    .award-list { list-style: none; margin-top: 4px; }
-    .award-list li { font-size: 0.96rem; color: var(--text-muted); line-height: 1.68; }
-    .award-list .award-place { color: var(--text); font-weight: 500; }
-    .award-list .sep { color: var(--text-dim); margin: 0 8px; }
 
     /* Contact */
     .contact-row {
@@ -220,7 +207,7 @@
 
     @media (max-width: 700px) {
       .hero { flex-direction: column; align-items: flex-start; gap: 24px; padding: 56px 0 40px; }
-      .deer-circle, #deer-canvas { width: 140px !important; height: 140px !important; }
+      .hero-photo { width: 140px; height: 140px; }
     }
   </style>
 </head>
@@ -232,12 +219,10 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="deer-circle">
-      <canvas id="deer-canvas"></canvas>
-    </div>
+    <img class="hero-photo" src="assets/profile.jpg" alt="Aidan Whitedeer">
     <div class="hero-content">
       <h1 class="hero-name">Aidan Whitedeer</h1>
-      <p class="hero-bio">I'm a coterminal student at Stanford studying Computer Science, advised by Thomas Icard, broadly interested in Agents and Deep Learning. Did some undergrad at Penn as well.</p>
+      <p class="hero-bio">I'm a coterminal BS/MS student at Stanford studying Computer Science, advised by Thomas Icard, broadly interested in Deep Learning and Human-Computer Interaction. Did some undergrad at Penn as well.</p>
     </div>
   </header>
 
@@ -282,17 +267,6 @@
       <div class="entry-title">Running Strong Dreamstarter Grant</div>
       <p class="entry-desc"><a class="ul-link" href="https://indianyouth.org/2025-dreamstarter-aidan-whitedeer/" target="_blank" rel="noopener">$20k grant</a> for AI research.</p>
     </div>
-    <div class="entry">
-      <div class="entry-title">Hackathon Awards</div>
-      <ul class="award-list">
-        <li><span class="award-place">1st Place</span><span class="sep">&middot;</span>Microsoft M365 Intern Copilot Agentic AI Hackathon</li>
-        <li><span class="award-place">Best Technical Build</span><span class="sep">&middot;</span>Uber Intern Hackathon</li>
-        <li><span class="award-place">2nd Place</span><span class="sep">&middot;</span>Coinbase x Stripe x Locus x YC Hackathon, Coinbase Track</li>
-        <li><span class="award-place">Honorable Mention (Top 4 Etched Track)</span><span class="sep">&middot;</span>Etched x Cognition x Mercor Inference Time-Compute Hackathon</li>
-        <li><span class="award-place">2nd Place</span><span class="sep">&middot;</span>AISES x Chevron 2023 National Hackathon</li>
-        <li><span class="award-place">3rd Place</span><span class="sep">&middot;</span>AISES x Chevron 2023 National Agentic AI Hackathon</li>
-      </ul>
-    </div>
   </section>
 
   <section id="projects">
@@ -321,7 +295,7 @@
 
   <section id="contact">
     <p class="section-label">Get in Touch</p>
-    <p class="entry-desc">I like chatting about agents, deep learning, and research.</p>
+    <p class="entry-desc">I like chatting about cool research and video games/manga.</p>
     <div class="contact-row">
       <a class="gh" href="https://github.com/awd-i" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
@@ -336,115 +310,6 @@
 
 </div>
 
-<script type="module">
-  import * as THREE from 'three';
-  import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-
-  const SIZE = 180;
-  const canvas = document.getElementById('deer-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(SIZE, SIZE);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
-  camera.position.set(0, 0, 10);
-  camera.lookAt(0, 0, 0);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-  const pl1 = new THREE.PointLight(0xffffff, 1.5);
-  pl1.position.set(5, 5, 5);
-  scene.add(pl1);
-  const pl2 = new THREE.PointLight(0x4488ff, 0.8);
-  pl2.position.set(-5, -3, 3);
-  scene.add(pl2);
-
-  const vertexShader = `
-    varying vec3 vNormal;
-    varying vec3 vPosition;
-    void main() {
-      vNormal = normalize(normalMatrix * normal);
-      vPosition = position;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `;
-
-  const fragmentShader = `
-    uniform float time;
-    uniform vec3 color;
-    uniform vec3 glowColor;
-    varying vec3 vNormal;
-    varying vec3 vPosition;
-    void main() {
-      float gridSize = 0.15;
-      float gridThickness = 0.03;
-      float gridX = abs(fract(vPosition.x / gridSize) - 0.5) * 2.0;
-      float gridY = abs(fract(vPosition.y / gridSize) - 0.5) * 2.0;
-      float gridZ = abs(fract(vPosition.z / gridSize) - 0.5) * 2.0;
-      float grid = smoothstep(1.0 - gridThickness, 1.0, max(max(gridX, gridY), gridZ));
-      float scanLine = sin((vPosition.y - time * 2.0) * 30.0) * 0.5 + 0.5;
-      scanLine = smoothstep(0.8, 1.0, scanLine);
-      float bands = sin(vPosition.y * 6.0 - time * 1.5) * 0.5 + 0.5;
-      bands = smoothstep(0.6, 0.8, bands);
-      vec3 viewDirection = normalize(cameraPosition - vPosition);
-      float fresnel = pow(1.0 - abs(dot(viewDirection, vNormal)), 2.5);
-      vec3 finalColor = color * 0.4;
-      finalColor += vec3(1.0) * grid * 0.8;
-      finalColor += vec3(1.0) * scanLine * 0.6;
-      finalColor += color * bands * 0.3;
-      finalColor += glowColor * fresnel * 0.9;
-      finalColor += vec3(1.0) * grid * scanLine * 0.5;
-      float alpha = fresnel * 0.7 + grid * 0.3 + scanLine * 0.2 + 0.3;
-      gl_FragColor = vec4(finalColor, alpha);
-    }
-  `;
-
-  let deerObj = null;
-  const loader = new OBJLoader();
-  loader.load('assets/Deer.obj', (obj) => {
-    const box = new THREE.Box3().setFromObject(obj);
-    const center = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const scale = 7 / maxDim;
-    obj.scale.setScalar(scale);
-    obj.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
-    obj.position.y += 0.2;
-
-    obj.traverse((child) => {
-      if (child.isMesh) {
-        child.material = new THREE.ShaderMaterial({
-          uniforms: {
-            time: { value: 0 },
-            color: { value: new THREE.Color(0xc8d8f0) },
-            glowColor: { value: new THREE.Color(0xc8d8f0) },
-          },
-          vertexShader,
-          fragmentShader,
-          transparent: true,
-          side: THREE.DoubleSide,
-          blending: THREE.AdditiveBlending,
-        });
-      }
-    });
-
-    scene.add(obj);
-    deerObj = obj;
-  });
-
-  const clock = new THREE.Clock();
-  (function animate() {
-    requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
-    if (deerObj) {
-      deerObj.rotation.y = t * 1.2;
-      deerObj.traverse((child) => {
-        if (child.material?.uniforms?.time) child.material.uniforms.time.value = t;
-      });
-    }
-    renderer.render(scene, camera);
-  })();
-</script>
 
 </body>
 </html>
