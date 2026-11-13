@@ -34,20 +34,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:           #0d1b2e;
-      --bg-raised:    #101f35;
-      --bg-card:      #132040;
-      --bg-card-h:    #172548;
-      --border:       rgba(180,210,255,0.08);
-      --border-h:     rgba(180,210,255,0.16);
-      --text:         #c8d8f0;
-      --text-muted:   #5a7a9a;
-      --text-dim:     #2a3f5a;
-      --accent:       #f472b6;
-      --accent-s:     rgba(244,114,182,0.15);
-      --accent-glow:  rgba(244,114,182,0.07);
-      --frame-bg:     #081020;
-      --mono:         'JetBrains Mono', 'Fira Mono', monospace;
+      --bg:          #0d1b2e;
+      --border:      rgba(180,210,255,0.08);
+      --text:        #c8d8f0;
+      --text-strong: #e0eeff;
+      --text-muted:  #7d9aba;
+      --text-dim:    #2a3f5a;
+      --accent:      #f472b6;
+      --mono:        'JetBrains Mono', 'Fira Mono', monospace;
     }
 
     @font-face {
@@ -72,7 +66,6 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Stripe.dev grid background */
     body::after {
       content: '';
       position: fixed;
@@ -87,98 +80,39 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* ── Page wrap ── */
     .wrap {
-      max-width: 900px;
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 28px;
     }
 
-    /* ── HERO ── */
+    /* Hero */
     .hero {
-      padding: 100px 0 80px;
+      padding: 96px 0 56px;
       display: flex;
       align-items: center;
-      gap: 72px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      gap: 56px;
     }
-
     .hero-content { flex: 1; min-width: 0; }
-
     .hero-name {
       font-size: clamp(2rem, 5vw, 2.9rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.08;
-      margin-bottom: 14px;
-      color: #e0eeff;
+      margin-bottom: 16px;
+      color: var(--text-strong);
     }
-
-    .hero-subtitle {
-      font-size: 1.08rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
-
     .hero-bio {
-      font-size: 1rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
-      max-width: 500px;
-      margin-bottom: 30px;
       line-height: 1.7;
     }
 
-    .hero-bio span {
-      color: rgba(255,255,255,0.5);
-    }
-
-    .social-row {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 15px;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: var(--bg-raised);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      letter-spacing: 0.01em;
-    }
-
-    .social-btn svg { opacity: 0.6; transition: opacity 0.2s; }
-
-    .social-btn:hover {
-      border-color: var(--border-h);
-      color: var(--text);
-      background: var(--bg-card);
-    }
-    .social-btn:hover svg { opacity: 1; }
-
-    .hero-photo {
-      width: 213px;
-      height: 213px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 2px solid var(--border);
-      flex-shrink: 0;
-      box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
-    }
-
     .deer-circle {
-      width: 213px;
-      height: 213px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid var(--border);
@@ -186,473 +120,83 @@
       box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
       background: #060d1a;
     }
+    #deer-canvas { width: 180px !important; height: 180px !important; display: block; }
 
-    #deer-canvas {
-      width: 213px !important;
-      height: 213px !important;
-      display: block;
-    }
-
-    /* ── Section ── */
+    /* Sections */
     section {
-      padding: 72px 0;
+      padding: 44px 0;
       border-top: 1px solid var(--border);
     }
-
     .section-label {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 40px;
+      margin-bottom: 26px;
       font-family: var(--mono);
     }
-    .section-label::before {
-      content: '/ ';
-      color: var(--accent);
-      opacity: 0.7;
-    }
+    .section-label::before { content: '/ '; color: var(--accent); opacity: 0.7; }
 
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 15px;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: var(--bg-raised);
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.18s ease;
-    }
-    .btn:hover {
-      border-color: var(--border-h);
-      color: var(--text);
-      background: var(--bg-card);
-    }
-
-    .btn-accent {
-      border-color: rgba(244,114,182,0.3);
-      color: var(--accent);
-      background: rgba(244,114,182,0.09);
-    }
-    .btn-accent:hover {
-      border-color: rgba(244,114,182,0.55);
-      color: #f9a8d4;
-      background: rgba(244,114,182,0.16);
-    }
-
-    /* ── Tags ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
-    .tag {
-      font-size: 0.7rem;
-      font-family: var(--mono);
-      padding: 3px 10px;
-      border: 1px solid rgba(180,210,255,0.18);
-      border-radius: 0;
-      color: rgba(180,210,255,0.6);
-      background: rgba(180,210,255,0.06);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── Video ── */
-    .vid {
-      width: 100%;
-      display: block;
-      border-radius: 0;
-      border: 1px solid var(--border);
-      background: #000;
-    }
-
-    /* ─────────────────────────────────────
-       STRIPE FRAME (poster wrapper)
-    ───────────────────────────────────── */
-    .stripe-frame {
-      background: var(--frame-bg);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .stripe-frame-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
-      background-size: 22px 22px;
-      pointer-events: none;
-    }
-
-    .stripe-frame-bar {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 14px;
-      background: rgba(160,185,220,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .sfb-icon {
-      font-size: 0.75rem;
-      font-family: var(--mono);
-      color: rgba(180,210,240,0.55);
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-
-    .sfb-title {
-      font-size: 0.72rem;
-      font-family: var(--mono);
-      color: rgba(180,210,240,0.7);
-      letter-spacing: 0.15em;
-    }
-
-    .sfb-controls {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-    }
-
-    .sfb-controls svg {
-      opacity: 0.45;
-    }
-
-    .frame-body {
-      position: relative;
-      z-index: 2;
-    }
-
-    .frame-body img {
-      width: 100%;
-      display: block;
-    }
-
-    /* ── FIG.2 geometric visual (inline SVG frame) ── */
-    .geo-frame {
-      background: #0c1425;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 0;
-      overflow: hidden;
-    }
-
-    .geo-frame-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .geo-frame-svg {
-      width: 100%;
-      display: block;
-      background: #0c1425;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    /* ─────────────────────────────────────
-       RESEARCH
-    ───────────────────────────────────── */
-    .research-entry {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 44px;
-      align-items: start;
-      margin-bottom: 68px;
-    }
-    .research-entry:last-child { margin-bottom: 0; }
-    .research-entry.flip { }
-    .research-entry.flip .research-media { order: 2; }
-    .research-entry.flip .research-info  { order: 1; }
-
-    .research-media { display: flex; flex-direction: column; gap: 10px; }
-
-    .research-info { padding-top: 4px; }
-
-    .research-title {
-      font-size: 1.15rem;
+    .entry { margin-bottom: 24px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-title {
+      font-size: 1.04rem;
       font-weight: 600;
-      line-height: 1.38;
-      letter-spacing: -0.015em;
-      margin-bottom: 7px;
-    }
-
-    .research-authors {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-
-    .research-venue {
-      font-size: 0.76rem;
-      color: rgba(220,100,160,0.7);
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-
-    .research-abstract {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      line-height: 1.68;
-      margin-bottom: 18px;
-    }
-
-    .research-links { display: flex; gap: 8px; flex-wrap: wrap; }
-
-    /* ─────────────────────────────────────
-       EXPERIENCE
-    ───────────────────────────────────── */
-    .exp-entry {
-      padding: 30px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-entry:last-child { border-bottom: none; }
-
-    .exp-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: start;
-      margin-bottom: 10px;
-    }
-
-    .exp-company {
-      font-size: 0.97rem;
-      font-weight: 600;
+      color: var(--text-strong);
+      line-height: 1.45;
       letter-spacing: -0.01em;
-      margin-bottom: 2px;
     }
-
-    .exp-company-sub {
-      font-weight: 400;
-      font-size: 0.78rem;
-      color: rgba(220,100,160,0.7);
-      margin-left: 6px;
-    }
-
-    .exp-role {
-      font-size: 0.82rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .exp-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.63;
-      max-width: 580px;
-    }
-
-    .exp-meta { text-align: right; }
-
-    .exp-date {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .exp-location {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .exp-video-wrap { margin-top: 18px; }
-
-    /* Side-by-side experience entry (like research) */
-    .exp-entry-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 44px;
-      align-items: start;
-      padding: 30px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-entry-split:last-child { border-bottom: none; }
-    .exp-entry-split.flip .exp-split-info  { order: 2; }
-    .exp-entry-split.flip .exp-split-media { order: 1; }
-    .exp-split-info  { display: flex; flex-direction: column; }
-    .exp-split-media { display: flex; flex-direction: column; gap: 10px; }
-
-    /* Clipped X embeds (replace the demo video) */
-    .tweet-box-lg, .tweet-mini {
-      position: relative;
-      overflow: hidden;
-      background: #15202b;
-      border: none;
-      border-radius: 16px;
-    }
-    /* Big card — fills the media column so it matches the left column height */
-    .tweet-box-lg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .mts-media { position: relative; align-self: stretch; }
-    .tweet-box-lg .twitter-tweet { width: 100% !important; margin: 0 !important; }
-
-    /* Row of three small cards below the date (left column) */
-    .tweet-row { display: flex; gap: 5px; margin-top: 16px; }
-    .tweet-mini { flex: 0 0 calc((100% - 10px) / 3); min-width: 0; height: 150px; }
-    .tweet-mini .tm-z { zoom: 0.5; }
-    .tweet-mini .twitter-tweet { margin: 0 !important; }
-    .tweet-mini .tw-fade { height: 50px; }
-
-    .tweet-box-lg .twitter-tweet,
-    .tweet-box-lg iframe,
-    .tweet-mini twitterwidget,
-    .tweet-mini iframe { margin: 0 !important; }
-
-    .tw-fade {
-      position: absolute; left: 0; right: 0; bottom: 0;
-      height: 70px; z-index: 3; pointer-events: none;
-      background: linear-gradient(to bottom, rgba(21,32,43,0), #15202b 85%);
-    }
-    .tw-open {
-      position: absolute; right: 12px; bottom: 12px;
-      width: 38px; height: 38px; border-radius: 11px;
-      display: flex; align-items: center; justify-content: center;
-      background: #1d9bf0; z-index: 4;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-    }
-    .tw-open-sm { width: 26px; height: 26px; right: 7px; bottom: 7px; border-radius: 7px; }
-    .tw-open-sm svg { width: 13px; height: 13px; }
-
-    @media (max-width: 700px) {
-      .exp-entry-split { grid-template-columns: 1fr; gap: 20px; }
-      .exp-entry-split.flip .exp-split-info  { order: 0; }
-      .exp-entry-split.flip .exp-split-media { order: 0; }
-
-      /* MTS Live: stack as text → Marc tweet → 3 mini tweets, text stays full size */
-      .exp-entry-split:has(.mts-media) { display: flex; flex-direction: column; gap: 0; }
-      .exp-entry-split:has(.mts-media) .exp-split-info { display: contents; }
-      .exp-entry-split:has(.mts-media) .mts-media {
-        order: 1; position: static; align-self: stretch; margin-top: 20px;
-      }
-      .exp-entry-split:has(.mts-media) .mts-media .tweet-box-lg {
-        position: relative; inset: auto; width: 100%; height: auto;
-      }
-      .exp-entry-split:has(.mts-media) .tweet-row { order: 2; margin-top: 16px; }
-    }
-
-    /* ─────────────────────────────────────
-       PROJECTS (tabbed)
-    ───────────────────────────────────── */
-    .projects-shell {
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      overflow: hidden;
-      background: var(--bg-raised);
-    }
-
-    .projects-nav {
-      background: rgba(8,16,32,0.6);
-      border-right: 1px solid var(--border);
-      padding: 6px 0;
-    }
-
-    .proj-tab {
-      display: block;
-      width: 100%;
-      padding: 11px 18px;
-      background: none;
-      border: none;
-      border-left: 2px solid transparent;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-align: left;
-      line-height: 1.3;
-      transition: color 0.15s, background 0.15s, border-color 0.15s;
-    }
-
-    .proj-tab:hover {
-      color: var(--text);
-      background: var(--bg-raised);
-    }
-
-    .proj-tab.active {
-      color: var(--text);
-      background: var(--bg-raised);
-      border-left-color: var(--accent);
-    }
-
-    .proj-tab .tab-sub {
-      display: block;
-      font-size: 0.68rem;
-      color: rgba(244,114,182,0.7);
-      font-weight: 400;
-      margin-top: 1px;
-    }
-
-    .projects-panels { padding: 28px 32px; }
-
-    .proj-panel { display: none; }
-    .proj-panel.active { display: block; }
-
-    .proj-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      margin-bottom: 3px;
-    }
-
-    .proj-award {
-      font-size: 0.76rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 14px;
-    }
-
-    .proj-desc {
+    .entry-title .sep { color: var(--text-muted); margin: 0 4px; }
+    .entry-desc {
       font-size: 0.96rem;
       color: var(--text-muted);
       line-height: 1.68;
-      margin-bottom: 16px;
+      margin-top: 4px;
     }
 
-    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-
-    .proj-video { margin-bottom: 16px; }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 44px 0 52px;
-      text-align: center;
+    .ul-link {
+      border-bottom: 1px solid rgba(244,114,182,0.35);
+      transition: color 0.18s, border-color 0.18s;
     }
+    .ul-link:hover { color: var(--accent); border-color: var(--accent); }
+    .entry-title .ul-link { font-weight: 500; font-size: 0.92rem; color: var(--text-muted); margin-left: 6px; }
+    .entry-title .ul-link:hover { color: var(--accent); }
 
-    .footer-links {
+    .award-list { list-style: none; margin-top: 4px; }
+    .award-list li { font-size: 0.96rem; color: var(--text-muted); line-height: 1.68; }
+    .award-list .award-place { color: var(--text); font-weight: 500; }
+    .award-list .sep { color: var(--text-dim); margin: 0 8px; }
+
+    /* Contact */
+    .contact-row {
       display: flex;
-      justify-content: center;
-      gap: 28px;
-      margin-bottom: 18px;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      font-size: 0.96rem;
+      color: var(--text-muted);
       flex-wrap: wrap;
     }
-
-    .footer-link {
-      font-size: 0.8rem;
-      color: var(--text-dim);
+    .contact-row .gh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--text-strong);
       transition: color 0.18s;
     }
-    .footer-link:hover { color: var(--text-muted); }
+    .contact-row .gh:hover { color: var(--accent); }
+    .contact-row .dot { color: var(--text-dim); }
 
-    .footer-copy {
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 44px;
+      text-align: center;
       font-size: 0.72rem;
       color: var(--text-dim);
     }
 
-    /* ── Background gradient orb ── */
     .bg-orb {
       position: fixed;
       top: -300px;
@@ -674,26 +218,9 @@
       z-index: 0;
     }
 
-    .wrap { position: relative; z-index: 1; }
-
-    /* ── Responsive ── */
     @media (max-width: 700px) {
-      .hero { flex-direction: column; gap: 20px; padding: 60px 0 52px; max-width: 100%; }
-      .hero-photo { width: 120px; height: 120px; }
-      .research-entry { grid-template-columns: 1fr; gap: 24px; }
-      .research-entry.flip .research-media { order: 0; }
-      .research-entry.flip .research-info  { order: 0; }
-      .projects-shell { grid-template-columns: 1fr; }
-      .projects-nav { border-right: none; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; padding: 0; }
-      .proj-tab { border-left: none; border-bottom: 2px solid transparent; border-right: 1px solid var(--border); padding: 12px 14px; text-align: center; }
-      .proj-tab:nth-child(even) { border-right: none; }
-      .proj-tab:nth-child(1), .proj-tab:nth-child(2) { border-top: none; }
-      .proj-tab:nth-child(3), .proj-tab:nth-child(4) { border-top: 1px solid var(--border); }
-      .proj-tab.active { border-left-color: transparent; border-bottom-color: var(--accent); background: rgba(244,114,182,0.06); }
-      .proj-tab .tab-sub { display: block; }
-      .projects-panels { padding: 20px 18px; }
-      .exp-header { grid-template-columns: 1fr; }
-      .exp-meta { text-align: left; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 24px; padding: 56px 0 40px; }
+      .deer-circle, #deer-canvas { width: 140px !important; height: 140px !important; }
     }
   </style>
 </head>
@@ -704,390 +231,116 @@
 
 <div class="wrap">
 
-  <!-- ════════════════════════════════════
-       HERO
-  ════════════════════════════════════ -->
   <header class="hero">
     <div class="deer-circle">
       <canvas id="deer-canvas"></canvas>
     </div>
     <div class="hero-content">
       <h1 class="hero-name">Aidan Whitedeer</h1>
-      <p class="hero-bio">
-        CS BS/MS at Stanford and Researcher at Stanford Virtual Human Interaction Lab. Previously at <span>Microsoft</span>, building at <span>MTS Live</span>, currently at <span>Uber AI</span>. Research interests include virtual spaces, human interaction within VR/XR spaces, and reinforcement learning.
-      </p>
-      <div class="social-row">
-        <a href="mailto:awd@stanford.edu" class="social-btn">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          Email
-        </a>
-        <a href="https://github.com/awd-i" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/awhitedeer/" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://x.com/a_whitedeer" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.727-8.842L1.254 2.25H8.08l4.256 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X
-        </a>
-      </div>
+      <p class="hero-bio">I'm a coterminal student at Stanford studying Computer Science, advised by Thomas Icard, broadly interested in Agents and Deep Learning. Did some undergrad at Penn as well.</p>
     </div>
   </header>
 
-
-  <!-- ════════════════════════════════════
-       RESEARCH
-  ════════════════════════════════════ -->
-  <section id="research">
-    <p class="section-label">Featured Projects</p>
-
-    <!-- ── Paper 1: Roblox RL ── -->
-    <div class="research-entry">
-      <div class="research-media">
-        <div class="stripe-frame">
-          <div class="stripe-frame-bg"></div>
-          <div class="stripe-frame-bar">
-            <span class="sfb-icon">&gt;_</span>
-            <span class="sfb-title">[ VIDEO ]</span>
-            <div class="sfb-controls">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-            </div>
-          </div>
-          <div class="frame-body">
-            <video style="width:100%;display:block;background:#000;" autoplay muted loop playsinline preload="auto">
-              <source src="assets/papervideo.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-      <div class="research-info">
-        <h3 class="research-title">Parallel Deep-RL Agents for Roblox Obstacle-Course Navigation: From Single-Course Memorization to Generalizing Across Procedurally-Composed Courses</h3>
-        <p class="research-authors">Aidan Whitedeer, Alex Li, Cheney Sang</p>
-        <p class="research-venue">Department of Computer Science · Stanford University · 2026</p>
-        <p class="research-abstract">
-          A shared deep-RL agent (Behavioral Cloning → PPO) trained inside Roblox to navigate platforming obbies, with many agents running inference in-engine in parallel. We build a full pipeline that bridges Luau game physics to a training loop, procedurally generates obstacle courses, and trains a single course-agnostic policy across them via domain randomization.
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════
-       EXPERIENCE
-  ════════════════════════════════════ -->
   <section id="experience">
     <p class="section-label">Experience</p>
 
-    <!-- Uber -->
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company">Uber AI, Uber Technologies</div>
-          <div class="exp-role">Software Engineer Intern</div>
-          <div class="exp-desc">
-            <ul style="margin:6px 0 0;padding-left:18px;">
-              <li>Trained a model-agnostic router for Uber&rsquo;s internal AI assistant Cortana, that automatically selects cheapest adequate models per query, reducing cost and latency.</li>
-              <li>Creating agentic tooling for building and deploying changes within Uber&rsquo;s Michelangelo Control Plane, their model training and serving platform</li>
-              <li>Adding subagent support with OpenCode Harness for Uber&rsquo;s Agent Builder Platform</li>
-            </ul>
-          </div>
-        </div>
-        <div class="exp-meta">
-          <div class="exp-date">Summer 2026</div>
-          <div class="exp-location">San Francisco, CA</div>
-        </div>
-      </div>
+    <div class="entry">
+      <div class="entry-title">Research @ MILA, Quebec Artificial Intelligence Institute<span class="sep">|</span>Advised by Shawn Tsosie and Michael Running Wolf</div>
+      <p class="entry-desc">Post-Training for LRLs with synthetic curricula.</p>
     </div>
 
-    <!-- MTS Live -->
-    <div class="exp-entry-split" style="align-items:stretch;">
-      <div class="exp-split-info">
-        <div class="exp-company">MTS Live<span class="exp-company-sub">(Monitoring the Situation)</span></div>
-        <div class="exp-role">Member of Technical Staff</div>
-        <div class="exp-desc">Building and shipping engineering and product across MTS, with a primary focus on drops. Own the full lifecycle: scoping, development, and launch execution end to end.</div>
-        <div class="exp-desc" style="margin-top:12px;">Deployed Products:
-          <ul style="margin:6px 0 0;padding-left:18px;">
-            <li><a href="https://drops.mts.now/elevenlabs/" target="_blank" rel="noopener">drops.mts.now/elevenlabs</a></li>
-            <li><a href="https://drops.mts.now/aimath/" target="_blank" rel="noopener">drops.mts.now/aimath</a></li>
-            <li><a href="https://drops.mts.now/personalagents" target="_blank" rel="noopener">drops.mts.now/personalagents</a></li>
-          </ul>
-        </div>
-        <div style="margin-top:10px;">
-          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">May 2026 – Present · San Francisco, CA</span>
-        </div>
-        <div class="tweet-row">
-          <div class="tweet-mini">
-            <div class="tm-z"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="250"><p lang="en" dir="ltr">We built a way for you to preview ElevenLabs&#39; new musicgen model, Music V2, along with two audio models: Voice and Scribe.<a href="https://t.co/oIQ8cpYZp8">https://t.co/oIQ8cpYZp8</a> <a href="https://t.co/7jkh2T0tLz">https://t.co/7jkh2T0tLz</a> <a href="https://t.co/MVMJSivNAB">pic.twitter.com/MVMJSivNAB</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2061582150693175772?ref_src=twsrc%5Etfw">June 1, 2026</a></blockquote></div>
-            <div class="tw-fade"></div>
-            <a class="tw-open tw-open-sm" href="https://x.com/MTSlive/status/2061582150693175772" target="_blank" rel="noopener" aria-label="Open tweet">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-          <div class="tweet-mini">
-            <div class="tm-z"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="250"><p lang="en" dir="ltr">Personal agents have gone mainstream.<br><br>Always-on software that runs on your machine: it reads your messages, writes its own code and handles tasks on its own.<br><br>We broke down the loop, the projects, and what exactly makes them so useful for everyday work. <a href="https://t.co/Ilenw5celC">https://t.co/Ilenw5celC</a> <a href="https://t.co/0xAgVF43km">pic.twitter.com/0xAgVF43km</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2067004290393428300?ref_src=twsrc%5Etfw">June 16, 2026</a></blockquote></div>
-            <div class="tw-fade"></div>
-            <a class="tw-open tw-open-sm" href="https://x.com/MTSlive/status/2067004290393428300" target="_blank" rel="noopener" aria-label="Open tweet">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="exp-split-media mts-media">
-        <div class="tweet-box-lg">
-          <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="550"><p lang="en" dir="ltr">OpenAI and Anthropic&#39;s Mythos just independently disproved Erdös&#39; unit-distance conjecture six days apart.<br><br>We broke down the math, the models, and what it means that machines are now formally proving theorems.<br><br>Read the full drop: <a href="https://t.co/neBOdAKu3J">https://t.co/neBOdAKu3J</a> <a href="https://t.co/UQXR0MP1cl">pic.twitter.com/UQXR0MP1cl</a></p>&mdash; MTS (@MTSlive) <a href="https://x.com/MTSlive/status/2060046619639480482?ref_src=twsrc%5Etfw">May 28, 2026</a></blockquote>
-          <div class="tw-fade"></div>
-          <a class="tw-open" href="https://x.com/MTSlive/status/2060046619639480482" target="_blank" rel="noopener" aria-label="Open tweet">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </div>
-      </div>
+    <div class="entry">
+      <div class="entry-title">Engineering @ Uber AI, Uber Technologies</div>
+      <p class="entry-desc">Agent Building, Benchmarking, and Autonomous Engineering Workflows for Michelangelo (Uber's ML Control Plane).</p>
     </div>
 
-    <!-- Stanford VR Lab -->
-    <div class="exp-entry-split flip">
-      <div class="exp-split-info">
-        <div class="exp-company">Stanford VR Lab<span class="exp-company-sub">(Virtual Human Interaction Lab)</span></div>
-        <div class="exp-role">ML Research</div>
-        <div class="exp-desc">Researching social dynamics in XR environments by building and finetuning various YOLO-based detection models on annotated egocentric video from Meta Quest headsets. Developing annotation infrastructure with LabelStudio and OpenCV pipelines to support multi-class person detection studies. Developed vision model methodologies for detecting whether a person is wearing a VR headset. Work contributes to ongoing investigations into mixed-reality social perception and human behavior modeling.</div>
-        <div style="margin-top:10px;">
-          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">Jan 2026 – Present · Stanford, CA</span>
-        </div>
-      </div>
-      <div class="exp-split-media">
-        <div class="stripe-frame">
-          <div class="stripe-frame-bg"></div>
-          <div class="stripe-frame-bar">
-            <span class="sfb-icon">&gt;_</span>
-            <span class="sfb-title">[ IMAGE ]</span>
-            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
-          </div>
-          <div class="frame-body">
-            <img src="assets/vr-detection.png" alt="YOLO multi-class headset detection" style="width:100%;display:block;">
-          </div>
-        </div>
-      </div>
+    <div class="entry">
+      <div class="entry-title">Research Assistant @ Stanford Virtual Human Interaction Lab<span class="sep">|</span>Advised by Jeremy Bailenson</div>
+      <p class="entry-desc">Mixed-Reality Social Perception and Human Behavior Modeling with OpenCV, YOLO, and RF-DETR.</p>
     </div>
 
-    <!-- Microsoft -->
-    <div class="exp-entry-split">
-      <div class="exp-split-info">
-        <div class="exp-company">Microsoft</div>
-        <div class="exp-role">Software Engineer Intern</div>
-        <div class="exp-desc">Built an interactive outage dashboard with a trained LLM analyst using React, C#, TypeScript, KQL, and Azure, featuring real-time geo-visualization, automated incident analysis, and insights generation for operational monitoring. <strong style="color:rgba(255,255,255,0.5);font-weight:500;">Won 1st Place · M365 Copilot Agentic AI Hackathon.</strong></div>
-        <div style="margin-top:10px;">
-          <span class="exp-date" style="font-size:0.78rem;color:var(--text-muted);">May – Aug 2025 · Redmond, WA</span>
-        </div>
-      </div>
-      <div class="exp-split-media">
-        <div class="stripe-frame">
-          <div class="stripe-frame-bg"></div>
-          <div class="stripe-frame-bar">
-            <span class="sfb-icon">&gt;_</span>
-            <span class="sfb-title">[ IMAGE ]</span>
-            <div class="sfb-controls"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
-          </div>
-          <div class="frame-body">
-            <img src="assets/microsoft-dashboard2.png" alt="Microsoft 365 Network Outages Dashboard" style="width:100%;display:block;">
-          </div>
-        </div>
-      </div>
+    <div class="entry">
+      <div class="entry-title">Engineering &amp; Product @ MTS</div>
+      <p class="entry-desc">Solo-engineer, dropped tons of cool products with teams at OpenAI, ElevenLabs, Neon, and Databricks.</p>
     </div>
 
-    <!-- Roblox -->
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company">Roblox</div>
-          <div class="exp-role">Game Developer &amp; UI Designer</div>
-          <div class="exp-desc">Developed 20+ online games with 4M+ cumulative plays and ~$15,000 in earnings using Lua, MySQL, and object-oriented programming.</div>
-        </div>
-        <div class="exp-meta">
-          <div class="exp-date">2014 – 2022</div>
-          <div class="exp-location">Broomfield, CO</div>
-        </div>
-      </div>
+    <div class="entry">
+      <div class="entry-title">Engineering @ Microsoft</div>
+      <p class="entry-desc">Enterprise + Cloud.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Game Developing @ Roblox</div>
+      <p class="entry-desc">Made $15k and got 4 million visits by 12 years old.</p>
     </div>
   </section>
 
+  <section id="awards">
+    <p class="section-label">Awards</p>
 
-  <!-- ════════════════════════════════════
-       PROJECTS
-  ════════════════════════════════════ -->
+    <div class="entry">
+      <div class="entry-title">Running Strong Dreamstarter Grant</div>
+      <p class="entry-desc"><a class="ul-link" href="https://indianyouth.org/2025-dreamstarter-aidan-whitedeer/" target="_blank" rel="noopener">$20k grant</a> for AI research.</p>
+    </div>
+    <div class="entry">
+      <div class="entry-title">Hackathon Awards</div>
+      <ul class="award-list">
+        <li><span class="award-place">1st Place</span><span class="sep">&middot;</span>Microsoft M365 Intern Copilot Agentic AI Hackathon</li>
+        <li><span class="award-place">Best Technical Build</span><span class="sep">&middot;</span>Uber Intern Hackathon</li>
+        <li><span class="award-place">2nd Place</span><span class="sep">&middot;</span>Coinbase x Stripe x Locus x YC Hackathon, Coinbase Track</li>
+        <li><span class="award-place">Honorable Mention (Top 4 Etched Track)</span><span class="sep">&middot;</span>Etched x Cognition x Mercor Inference Time-Compute Hackathon</li>
+        <li><span class="award-place">2nd Place</span><span class="sep">&middot;</span>AISES x Chevron 2023 National Hackathon</li>
+        <li><span class="award-place">3rd Place</span><span class="sep">&middot;</span>AISES x Chevron 2023 National Agentic AI Hackathon</li>
+      </ul>
+    </div>
+  </section>
+
   <section id="projects">
-    <p class="section-label">Featured Projects</p>
+    <p class="section-label">Projects</p>
 
-    <div class="projects-shell">
-      <!-- Left nav tabs -->
-      <nav class="projects-nav" aria-label="Projects">
-        <button class="proj-tab active" onclick="showProj('xbeat', this)">
-          xBeat
-          <span class="tab-sub">AI Voice DJ · xAI Hackathon</span>
-        </button>
-        <button class="proj-tab" onclick="showProj('giode', this)">
-          GIODE SDR
-          <span class="tab-sub">AI Sales Dashboard</span>
-        </button>
+    <div class="entry">
+      <div class="entry-title">Roblox Deep-RL Obstacle Course Agents, CS224R Research Project</div>
+      <p class="entry-desc">Used PPO to train Roblox agents to beat novel obstacle courses.</p>
+    </div>
 
-        <button class="proj-tab" onclick="showProj('sonus', this)">
-          Sonus
-          <span class="tab-sub">Voice Payment · YC Hackathon</span>
-        </button>
-        <button class="proj-tab" onclick="showProj('dreamstarter', this)">
-          Jiwere Elder Intelligence
-          <span class="tab-sub">DreamStarter Grant · $20K</span>
-        </button>
-        <button class="proj-tab" onclick="showProj('burnttt', this)">
-          BurnTTT
-          <span class="tab-sub">Test-Time-Training for HW Config · LoRA RL</span>
-        </button>
-      </nav>
+    <div class="entry">
+      <div class="entry-title">Deep Learning Alchemy Experiments <a class="ul-link" href="https://github.com/awd-i/assignments" target="_blank" rel="noopener">GitHub</a></div>
+      <p class="entry-desc">Ran 150+ training runs of 35M-parameter language models on H100s to study learning-rate scaling, sharpness, mode connectivity, and Transformer/RNN dynamics.</p>
+    </div>
 
-      <!-- Right panels -->
-      <div class="projects-panels">
+    <div class="entry">
+      <div class="entry-title">Uber mBERT Model Router, Best Technical Build, Uber Intern Hackathon</div>
+      <p class="entry-desc">Trained a ModernBERT router with LLM-as-judge labels that picks a cheaper LLM per query, projecting up to 95% inference-cost savings.</p>
+    </div>
 
-        <!-- xBeat -->
-        <div class="proj-panel active" id="panel-xbeat">
-          <div class="proj-title">xBeat: AI-Powered Voice DJ Panel</div>
-          <div class="proj-award">xAI Hackathon · Grok Voice Track</div>
-          <div class="proj-video">
-            <video class="vid" autoplay muted loop playsinline preload="auto">
-              <source src="assets/xbeat-demo.mp4" type="video/mp4">
-            </video>
-          </div>
-          <p class="proj-desc">
-            An AI-powered DJ system with dual-deck audio engine, BPM detection, automated transitions, 3-band EQ, and bass/voice/melody isolation. Built with Next.js 16, React 19, TypeScript, and Grok/X API integration. Features a real-time 3D visualizer with Three.js/React Three Fiber, voice control with speech recognition and TTS, and AI copilot music automation.
-          </p>
-          <div class="tags">
-            <span class="tag">Next.js 16</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Three.js</span>
-            <span class="tag">Web Audio API</span>
-            <span class="tag">Grok API</span>
-            <span class="tag">React 19</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/awd-i/xBeat" class="btn btn-accent" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-
-        <!-- GIODE SDR -->
-        <div class="proj-panel" id="panel-giode">
-          <div class="proj-title">GIODE SDR: AI-Powered Human Sales Dashboard</div>
-          <div class="proj-award">AI-Powered SDR System · Automated Pipeline Management</div>
-          <div class="proj-video">
-            <video class="vid" autoplay muted loop playsinline preload="auto">
-              <source src="assets/giode-demo.mp4" type="video/mp4">
-            </video>
-          </div>
-          <p class="proj-desc">
-            An AI-powered SDR system with automated lead scoring and pipeline management. Built automated lead scoring, email generation, and pipeline management with REST APIs, multi-model evaluation, error handling with retries, and production-ready architecture.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">REST APIs</span>
-            <span class="tag">Multi-model LLM</span>
-            <span class="tag">Lead Scoring</span>
-            <span class="tag">Pipeline</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/awd-i/GIODESDR" class="btn btn-accent" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-
-        <!-- Sonus -->
-        <div class="proj-panel" id="panel-sonus">
-          <div class="proj-title">Sonus: Voice Payment Interface</div>
-          <div class="proj-award">2nd Place · Coinbase Agentic Payments YC Hackathon</div>
-          <p class="proj-desc">
-            An AI-powered Web3 payment system built with TypeScript/Next.js, Coinbase CDP wallets, Claude agents, and Vapi voice calls. Supports autonomous transaction flows, HTTP 402 payments, cost-based tool chaining, phone approvals, and gas-abstracted on-chain payments using the Coinbase + Anthropic SDK.
-          </p>
-          <div class="tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">Next.js</span>
-            <span class="tag">Coinbase CDP</span>
-            <span class="tag">Claude Agents</span>
-            <span class="tag">Vapi</span>
-            <span class="tag">Web3</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/tonywangs/locus-agentic-hackathon" class="btn btn-accent" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="https://www.youtube.com/watch?v=1gbaKGgOt7E" class="btn btn-accent" target="_blank" rel="noopener">Demo ↗</a>
-          </div>
-          <div style="margin: 16px 0; border: 1px solid var(--border);">
-            <img src="assets/sonus-hackathon.jpg" alt="Sonus team at Agentic Payments Hackathon" style="width:100%;display:block;">
-          </div>
-        </div>
-
-        <!-- DreamStarter -->
-        <div class="proj-panel" id="panel-dreamstarter">
-          <div class="proj-title">Jiwere Elder Intelligence</div>
-          <div class="proj-award">DreamStarter · Running Strong for American Indian Youth · 2025</div>
-          <p class="proj-desc">
-            Creating framework for tribes to finetune mBERT models for endangered Native American Languages. Working with Raices Collaboration Project, mentored by Ken Attocknie. Received Dreamstarter Grant for $20,000 towards the project.
-          </p>
-          <div class="tags">
-            <span class="tag">AI / NLP</span>
-            <span class="tag">mBERT</span>
-            <span class="tag">Language Preservation</span>
-
-          </div>
-          <div class="proj-links">
-            <a href="https://indianyouth.org/2025-dreamstarter-aidan-whitedeer/" class="btn btn-accent" target="_blank" rel="noopener">Read More ↗</a>
-          </div>
-        </div>
-
-        <!-- BurnTTT -->
-        <div class="proj-panel" id="panel-burnttt">
-          <div class="proj-title">BurnTTT: Test-Time-Training for Hardware Configuration</div>
-          <div class="proj-award">RL-Finetuned LLM for HLS · Bit-Accurate Reward from C-Sim + Vivado Synthesis</div>
-          <div style="margin: 0 0 16px; border: 1px solid var(--border);">
-            <img src="assets/modelware.png" alt="BurnTTT — config-generation agent" style="width:100%;display:block;">
-          </div>
-          <p class="proj-desc">
-            A test-time-training loop that finetunes a config-generating LLM via LoRA (SFT/DPO) on high-reward (prompt → hardware config) trajectories, with reward computed from bit-accurate C-simulation and Vivado synthesis. Engineered lexicographic, budget-normalized rewards over a precision × reuse × strategy search space, plus an agentic repair loop that recovers from compile failures. Beats random-search, surrogate, and frozen-LLM baselines.
-          </p>
-          <div class="tags">
-            <span class="tag">LoRA (SFT/DPO)</span>
-            <span class="tag">Reinforcement Learning</span>
-            <span class="tag">Test-Time Training</span>
-            <span class="tag">Vivado HLS</span>
-            <span class="tag">C-Simulation</span>
-            <span class="tag">Agentic Repair Loop</span>
-            <span class="tag">Python</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://devpost.com/software/modelware" class="btn btn-accent" target="_blank" rel="noopener">DevPost ↗</a>
-          </div>
-        </div>
-
-      </div><!-- /projects-panels -->
-    </div><!-- /projects-shell -->
+    <div class="entry">
+      <div class="entry-title">BurnTTT, Honorable Mention, Inference-Time Compute Hackathon Project</div>
+      <p class="entry-desc">Built a LoRA SFT/DPO loop that improves LLM-generated hardware configs using C-simulation and synthesis rewards with an agentic compile-repair cycle.</p>
+    </div>
   </section>
 
-
-  <!-- ════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════ -->
-  <footer>
-    <div class="footer-links">
-      <a href="mailto:awd@stanford.edu" class="footer-link">awd@stanford.edu</a>
-      <a href="https://github.com/awd-i" class="footer-link" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/awhitedeer/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://x.com/a_whitedeer" class="footer-link" target="_blank" rel="noopener">@a_whitedeer</a>
+  <section id="contact">
+    <p class="section-label">Get in Touch</p>
+    <p class="entry-desc">I like chatting about agents, deep learning, and research.</p>
+    <div class="contact-row">
+      <a class="gh" href="https://github.com/awd-i" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <span class="dot">&middot;</span>
+      <span>awd [at] stanford [dot] edu</span>
     </div>
-    <p class="footer-copy">Aidan Whitedeer · Stanford CS · 2026</p>
-  </footer>
+  </section>
 
-</div><!-- /wrap -->
+  <footer>Aidan Whitedeer &middot; Stanford CS &middot; 2026</footer>
+
+</div>
 
 <script type="module">
   import * as THREE from 'three';
   import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
-  const SIZE = 213;
+  const SIZE = 180;
   const canvas = document.getElementById('deer-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setSize(SIZE, SIZE);
@@ -1193,19 +446,5 @@
   })();
 </script>
 
-<script>
-  function showProj(id, btn) {
-    document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('panel-' + id).classList.add('active');
-    btn.classList.add('active');
-
-    // autoplay video in newly activated panel
-    const vid = document.getElementById('panel-' + id).querySelector('video');
-    if (vid) { vid.currentTime = 0; vid.play().catch(() => {}); }
-  }
-</script>
-
-  <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
