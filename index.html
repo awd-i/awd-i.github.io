@@ -21,30 +21,19 @@
   <title>Aidan Whitedeer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:          #0d1b2e;
-      --border:      rgba(180,210,255,0.08);
-      --text:        #c8d8f0;
-      --text-strong: #e0eeff;
-      --text-muted:  #7d9aba;
-      --text-dim:    #2a3f5a;
-      --accent:      #f472b6;
-      --mono:        'JetBrains Mono', 'Fira Mono', monospace;
-    }
-
-    @font-face {
-      font-family: 'Tosh';
-      src: local('Tosh'), local('Tosh-Regular');
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: 'Tosh';
-      src: local('Tosh Bold'), local('Tosh-Bold');
-      font-weight: 700;
+      --bg:          #f4f1ea;
+      --border:      rgba(30,30,30,0.12);
+      --text:        #1c1b19;
+      --text-strong: #111;
+      --text-muted:  #6d6a62;
+      --text-dim:    #a39f94;
+      --accent:      #6d4fc4;
+      --serif:       'EB Garamond', 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
     }
 
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -52,25 +41,23 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Tosh', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.65;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    body::after {
-      content: '';
+    a { color: inherit; text-decoration: none; }
+
+    #bg {
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(180,210,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(180,210,255,0.03) 1px, transparent 1px);
-      background-size: 80px 80px;
+      background: url('assets/forest.jpg') center / cover no-repeat;
+      opacity: 0.22;
       pointer-events: none;
       z-index: 0;
     }
-
-    a { color: inherit; text-decoration: none; }
 
     .wrap {
       position: relative;
@@ -82,95 +69,86 @@
 
     /* Hero */
     .hero {
-      padding: 96px 0 56px;
+      padding: 88px 0 48px;
       display: flex;
       align-items: center;
-      gap: 56px;
+      gap: 48px;
     }
     .hero-content { flex: 1; min-width: 0; }
     .hero-name {
-      font-size: clamp(2rem, 5vw, 2.9rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 16px;
+      font-size: clamp(2.6rem, 6vw, 3.6rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 18px;
       color: var(--text-strong);
     }
     .hero-bio {
-      font-size: 1.02rem;
-      color: var(--text-muted);
-      line-height: 1.7;
+      font-size: 1.25rem;
+      line-height: 1.55;
+      color: var(--text);
     }
-    .entry-desc .hl, .hero-bio .hl { color: var(--accent); font-weight: 500; }
+    .hl { font-weight: 600; color: var(--text-strong); }
+    .entry-desc .hl { font-weight: 500; font-style: italic; }
 
     .hero-photo {
-      width: 180px;
-      height: 180px;
+      width: 168px;
+      height: 168px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center;
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       flex-shrink: 0;
-      box-shadow: 0 0 0 4px rgba(244,114,182,0.12);
     }
 
     /* Sections */
     section {
-      padding: 44px 0;
-      border-top: 1px solid var(--border);
+      padding: 40px 0;
     }
     .section-label {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 26px;
-      font-family: var(--mono);
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-strong);
+      margin-bottom: 22px;
     }
-    .section-label::before { content: '/ '; color: var(--accent); opacity: 0.7; }
 
-    .entry { margin-bottom: 24px; }
+    .entry { margin-bottom: 22px; }
     .entry:last-child { margin-bottom: 0; }
     .entry-title {
-      font-size: 1.04rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-strong);
-      line-height: 1.45;
-      letter-spacing: -0.01em;
+      line-height: 1.4;
     }
-    .entry-title .sep { color: var(--text-muted); margin: 0 4px; }
+    .entry-title .sep { color: var(--text-dim); margin: 0 10px; font-weight: 400; }
     .entry-desc {
-      font-size: 0.96rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      line-height: 1.68;
-      margin-top: 4px;
+      line-height: 1.55;
+      margin-top: 3px;
     }
 
-    .ul-link {
-      border-bottom: 1px solid rgba(244,114,182,0.35);
-      transition: color 0.18s, border-color 0.18s;
+    .ul-link, .org-link, .org-hl {
+      color: var(--text-strong);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color 0.18s;
     }
-    .ul-link:hover { color: var(--accent); border-color: var(--accent); }
-    .entry-title .ul-link { font-weight: 500; font-size: 0.92rem; color: var(--text-muted); margin-left: 6px; }
+    .org-hl { text-decoration: none; }
+    .ul-link:hover, .org-link:hover { color: var(--accent); }
+    .entry-title .ul-link { font-weight: 400; font-size: 1.05rem; margin-left: 6px; color: var(--text-muted); }
     .entry-title .ul-link:hover { color: var(--accent); }
-
-
-    .org-link {
-      color: var(--accent);
-      border-bottom: 1px solid rgba(244,114,182,0.35);
-      transition: color 0.18s, border-color 0.18s;
-    }
-    .org-hl { color: var(--accent); }
-    .org-link:hover { color: var(--accent); border-color: var(--accent); }
+    .entry-desc .ul-link { color: var(--text); }
 
     /* Contact */
     .contact-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-top: 16px;
-      font-size: 0.96rem;
+      margin-top: 14px;
+      font-size: 1.1rem;
       color: var(--text-muted);
       flex-wrap: wrap;
     }
@@ -178,44 +156,24 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-weight: 600;
       color: var(--text-strong);
+      text-decoration: underline;
+      text-underline-offset: 3px;
       transition: color 0.18s;
     }
     .contact-row .gh:hover { color: var(--accent); }
     .contact-row .dot { color: var(--text-dim); }
-
-    .bg-orb {
-      position: fixed;
-      top: -300px;
-      right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(ellipse, rgba(244,114,182,0.06) 0%, rgba(13,27,46,0) 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .bg-orb-2 {
-      position: fixed;
-      bottom: -200px;
-      left: -150px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(ellipse, rgba(96,165,250,0.04) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .contact-row em { font-style: italic; }
 
     @media (max-width: 700px) {
-      .hero { flex-direction: column; align-items: flex-start; gap: 24px; padding: 56px 0 40px; }
-      .hero-photo { width: 140px; height: 140px; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 24px; padding: 56px 0 36px; }
+      .hero-photo { width: 136px; height: 136px; }
     }
   </style>
 </head>
 <body>
 
-<div class="bg-orb"></div>
-<div class="bg-orb-2"></div>
+<div id="bg" aria-hidden="true"></div>
 
 <div class="wrap">
 
@@ -265,7 +223,7 @@
     <p class="section-label">Projects</p>
 
     <div class="entry">
-      <div class="entry-title">Uber mBERT Model Router</div>
+      <div class="entry-title">Uber Model Router</div>
       <p class="entry-desc">Trained a ModernBERT router with LLM-as-judge labels that picks a cheaper LLM per query, projecting up to 95% inference-cost savings. <span class="hl">Awarded Best Technical Build at the Uber Global Intern Hackathon.</span></p>
     </div>
 
@@ -289,7 +247,7 @@
     <p class="section-label">Writing</p>
 
     <div class="entry">
-      <div class="entry-title">May 28, 2026<span class="sep">|</span><a class="org-link" href="https://drops.mts.now/aimath/" target="_blank" rel="noopener">How AI Started Proving Theorems</a></div>
+      <div class="entry-title">May 28, 2026<span class="sep">-</span><a class="org-link" href="https://drops.mts.now/aimath/" target="_blank" rel="noopener">How AI Started Proving Theorems</a></div>
     </div>
   </section>
 
@@ -311,7 +269,7 @@
         GitHub
       </a>
       <span class="dot">&middot;</span>
-      <span>awd [at] stanford [dot] edu</span>
+      <em>awd [at] stanford [dot] edu</em>
     </div>
   </section>
 </div>
