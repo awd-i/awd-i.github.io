@@ -130,7 +130,7 @@
 </section>
 
 <section id="setup" class="col">
-  <h2>What I tested</h2>
+  <h2>Experiment Formulation<br></h2>
   <p>To test whether a post-training head is worth it (at the scale I had compute for), I used the following models and data.</p>
   <p><strong>Models</strong></p>
   <div class="tablewrap">
@@ -158,7 +158,7 @@
 </section>
 
 <section class="col" id="three-ways-to-add-a-head-to-a-finished-m">
-  <h3>Three ways to add a head to a finished model</h3>
+  <h3>Head Addition Methods</h3>
   <p>The hypothesis says the gain should depend on how much the model is allowed to adapt. So I add the same head in three ways, from least to most adaptation:</p>
   <div class="tablewrap">
     <table>
@@ -194,12 +194,8 @@
       </tbody>
     </table>
   </div>
-  <p>Our reference is what a from-scratch head is worth, which we calculate to be the loss of the authors' vanilla model minus the loss of their copy-head twin, on the same five sets. "Share recovered" is a late head's gain divided by that. As a calibration check, my FinePDFs perplexities for the vanilla models are within 3 to 4% of the ones the paper reports.</p>
   <p>For the whole-model, shielded and control runs have three seeds each.</p>
-</section>
-
-<section class="col" id="results-so-far">
-  <h2 id="what-the-from-scratch-head-is-worth-on-m">A from-scratch head is worth most on small models and repetitive text</h2>
+  <p><strong>Reference:</strong> Our reference is what a from-scratch head is worth, which we calculate to be the loss of the authors' vanilla model minus the loss of their copy-head twin, on the same five sets (Figure 1). "Share recovered" is a late head's gain divided by that. As a calibration check, my FinePDFs perplexities for the vanilla models are within 3 to 4% of the ones the paper reports. On web text the head's value shrinks as the model grows (0.049 nats at 135M, 0.033 at 360M and nothing at 1.7B, for the full-attention models), while on long PDFs it stays large at every size (0.16 to 0.31 nats), so I train on the 135M sliding-window pair, where the from-scratch gain is largest (0.057 nats on web text, 0.353 on PDFs).</p>
 </section>
 
 <div class="wide">
@@ -209,8 +205,7 @@
   </figure>
 </div>
 
-<section class="col">
-  <p>Two things in this figure helped shape the rest of the project. On the web text, the head's value shrunk as the model grew (from 0.049 nats at 135M to 0.033 at 360M to nothing at 1.7B for the full-attention models). On long PDFs, which are much more repetitive, it stayed large at every size (0.16 to 0.31 nats). Thus, empirically, a small model is where a late head has the most to recover. The 135M sliding-window pair, where the from-scratch gain is largest (0.057 nats on web text, 0.353 on PDFs), is the one I train on.</p>
+<section class="col" id="results-so-far">
   <h2 id="a-late-head-on-the-135m-model">A late head recovers about 60% of the from-scratch gain</h2>
 </section>
 
