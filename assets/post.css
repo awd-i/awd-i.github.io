@@ -108,3 +108,7 @@ figure.fig.narrow { max-width: var(--col); }
 .article .pts li::marker { color: var(--faint); }
 
 .tn { color: var(--pink); }
+
+.tldrbox { margin-top: 28px; background: var(--pink-wash); border: 0; border-radius: 0; padding: 16px 22px 20px; }
+.tldrbox p { margin: 6px 0 0; font-size: 1.02rem; line-height: 1.6; color: var(--text); }
+.tldrbox p + p { margin-top: 10px; }
