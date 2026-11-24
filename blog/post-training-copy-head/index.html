@@ -30,7 +30,7 @@
 <div class="wide">
   <div class="tldrbox">
     <div class="tk">TL;DR</div>
-    <p>This post explores Copy-Paste Language Models (CPLMs), which give a language model a second route to its output: a pointer that can paste a token straight from the context, mixed with the usual output head by a learned gate. I ask whether a copy head added after training could help discrete-token image models. Plain image generation has almost nothing to copy, and <strong>an editing model already copies its source</strong> through ordinary attention, so a pointer has little to add.</p>
+    <p>This post explores Copy-Paste Language Models (CPLMs), which give a language model a second route to its output: a pointer that can paste a token straight from the context, mixed with the usual output head by a learned gate. I ask whether a copy head added after training could help discrete-token image models. Plain image generation trivially has almost nothing to copy, so I look at image editing, where most tokens repeat the source. There, <strong>the editing model already copies its source</strong> through ordinary attention, so a pointer has little to add.</p>
   </div>
 </div>
 
@@ -112,7 +112,7 @@
 <section class="col" id="does-the-idea-carry-to-images">
   <h2>Image Model Experimentation</h2>
   <p>If a copy head helped text transformers, I hypothesized that it could potentially help discrete-token image models too. Models such as LlamaGen<span style="white-space:nowrap"><a class="ref" href="#ref-11">11</a></span>, Emu3<span style="white-space:nowrap"><a class="ref" href="#ref-12">12</a></span>, Chameleon<span style="white-space:nowrap"><a class="ref" href="#ref-17">17</a></span> and Janus-Pro<span style="white-space:nowrap"><a class="ref" href="#ref-18">18</a></span> predict the next image token from a fixed codebook, the same way a language model predicts the next word. Adding the head fit them without making any architecture changes.</p>
-  <p>Since a copy head can only gain on tokens that already appear in the context, the first thing to check costs almost nothing and involves no model: how often do image tokens repeat? I tokenised images with LlamaGen's tokenizer (16,384 codes, 256 tokens per image) and counted.</p>
+  <p>Trivially, we know it will fail for plain image generation. A copy head can only gain on tokens that already appear in the context, and <b>a 256-token image from LlamaGen's tokenizer (16,384 codes) uses about 250 different codes</b>, so only <strong>2%</strong> of next tokens could be copied. Editing is where I was curious, since most of an edited image is identical to its source. To check, I tokenised image pairs with the same tokenizer and counted how often the tokens repeat (Figure 1).</p>
 </section>
 
 <div class="wide">
@@ -123,8 +123,7 @@
 </div>
 
 <section class="col">
-  <p>The counts in Figure 1 split sharply by setting. When generating a single image, only <strong>2%</strong> of next tokens could be copied, <b>because a 256-token image uses about 250 different codes</b> and so there is almost nothing to copy. Video does only a little better for the next frame, and the reason is that the tokenizer is noisy: shifting an image by a single pixel changes more than a third of its codes, so two nearly identical frames mostly get different tokens.</p>
-  <p>Editing is the exception. Most of an edited image is identical to its source, and so are its tokens, which puts the share at <strong>61%</strong>, in the same range as text. So while the hypothesis fails for plain image generation, <b>a copy head could help an image model that edits.</b></p>
+  <p>Editing is the exception. Most of an edited image is identical to its source, and so are its tokens, which puts the share at <strong>61%</strong>, in the same range as text. So <b>a copy head could help an image model that edits.</b> Video does only a little better than plain generation for the next frame, and the reason is that the tokenizer is noisy: shifting an image by a single pixel changes more than a third of its codes, so two nearly identical frames mostly get different tokens.</p>
   <p><br></p>
   <div class="tablewrap">
     <table>
@@ -154,7 +153,7 @@
     </table>
   </div>
   <p class="soon" style="margin-top:-12px;margin-bottom:18px">EditAR's own tokenizer at 512 pixels, loss in nats per token. The last column is the share of matching tokens times the loss left on them, per edited-image token. The pass mark I set beforehand was 0.26 on PIPE.</p>
-  <p><strong>The editing model already copies.</strong> The pass mark is missed on every set, so I did not train a head. The token counts held up: most edited tokens match the source on PIPE and MagicBrush, as I predicted. What I got wrong was the model. I expected 1 to 3 nats of loss left on those tokens, and it is a small fraction of that, because EditAR already ranks the source token first almost every time. Where an edit did change a token, EditAR still gives the old source token 45% of the probability, so a copy head would push it further in the wrong direction. So the image hypothesis fails in both forms I could test: plain generation has nothing to copy, and an editing model that can see its source copies well through ordinary attention. This result is narrow: it is one editing model, trained with the source in its context, and an upper bound computed from scored tokens, since I did not train a head on it or generate edits.</p>
+  <p><strong>The editing model already copies.</strong> The pass mark is missed on every set, so I did not train a head. The token counts held up: most edited tokens match the source on PIPE and MagicBrush, as I predicted. What I got wrong was the model. I expected 1 to 3 nats of loss left on those tokens, and it is a small fraction of that, because EditAR already ranks the source token first almost every time. Where an edit did change a token, EditAR still gives the old source token 45% of the probability, so a copy head would push it further in the wrong direction. So the hypothesis fails for editing too: an editing model that can see its source already copies well through ordinary attention. This result is narrow: it is one editing model, trained with the source in its context, and an upper bound computed from scored tokens, since I did not train a head on it or generate edits.</p>
 </section>
 
 <section class="col" id="conclusion">
